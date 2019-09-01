@@ -1,0 +1,10 @@
+DISCORD RICH PRESENCE
+=====================
+
+This tree contains the DRP (Discord Rich Presence) source code, which
+aims to ingrate SPV3.2 with Discord by allowing players to display the
+campaign mission & difficulty they're playing on.
+
+The source code has been generously developed and provided by giraffe,
+and has been integrated into a custom Visual C++ project for convenient
+reproducible builds.
