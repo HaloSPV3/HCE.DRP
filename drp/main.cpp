@@ -56,7 +56,7 @@ byte CURRENT_PLAYERS;
 void main() {
 
 	discordInit();
-	combined = "Mainmenu";;
+	combined = "Main Menu";;
 	start_time = time(0);
 	updateDiscordPresence(start_time, NULL, combined.c_str(), "ui", "", combined.c_str(), NULL);
 
@@ -84,7 +84,7 @@ void main() {
 						temp_combined = "Changing game settings";
 					}
 					else {
-						temp_combined = "Mainmenu";
+						temp_combined = "Main Menu";
 					}
 
 					if (temp_combined != combined) {
@@ -93,7 +93,7 @@ void main() {
 						combined = temp_combined;
 					}
 				} else {
-					temp_combined = "Mainmenu";
+					temp_combined = "Main Menu";
 					if (temp_combined != combined) {
 						start_time = time(0);
 						updateDiscordPresence(start_time, NULL, temp_combined.c_str(), "ui", "", temp_combined.c_str(), NULL);
