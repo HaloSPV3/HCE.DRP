@@ -73,6 +73,18 @@
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
