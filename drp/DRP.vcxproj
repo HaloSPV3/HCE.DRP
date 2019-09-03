@@ -72,6 +72,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\$(Configuration)\controls\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
@@ -84,6 +85,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\$(Platform)\$(Configuration)\controls\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
