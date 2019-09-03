@@ -8,3 +8,14 @@ campaign mission & difficulty they're playing on.
 The source code has been generously developed and provided by giraffe,
 and has been integrated into a custom Visual C++ project for convenient
 reproducible builds.
+
+COMPILING
+---------
+
+In Visual Studio, the project MUST be compiled with the following
+configuraiton:
+
+-   Type: RELEASE
+-   Platform: x86
+
+Attempting to compile to any other type or platform will cause issues!
