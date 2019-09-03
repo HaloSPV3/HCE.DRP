@@ -13,9 +13,30 @@ COMPILING
 ---------
 
 In Visual Studio, the project MUST be compiled with the following
-configuraiton:
+configuration:
 
 -   Type: RELEASE
 -   Platform: x86
 
 Attempting to compile to any other type or platform will cause issues!
+
+The DLL is compiled to the following paths in the following contexts:
+
+        debug                      release
+  ----- -------------------------- ----------------------------
+  x86   .\bin\Debug\controls       .\bin\Release\controls
+  x64   .\bin\x64\Debug\controls   .\bin\x64\Release\controls
+
+RESOURCES
+---------
+
+The drp/resources directory stores the images used in the Discord Rich
+Presence:
+
+  directory    description
+  ------------ --------------------------------------------
+  campaign     images representing each SPV3.2 campaign
+  difficulty   images representing each SPV3.2 difficulty
+
+Images have been generously provided by Arecaidian Fox, giraffe, sbdJazz
+and the rest of the SPV3 crew.
