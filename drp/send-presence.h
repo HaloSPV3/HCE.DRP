@@ -13,7 +13,7 @@ This is a simple example in C of using the rich presence API asyncronously.
 #include <codecvt>
 #include "discord_rpc.h"
 
-static const char* APPLICATION_ID = "597772625778835487";
+static const char* APPLICATION_ID = "911489645446062091";
 
 static void updateDiscordPresence(int64_t startTime, const char *state, const char *details, const char *large_image_key, const char *small_image_key, const char *large_image_text, const char *small_image_text)
 {
