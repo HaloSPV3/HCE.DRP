@@ -21,11 +21,11 @@ static void updateDiscordPresence(int64_t startTime, const char *state, const ch
 	memset(&discordPresence, 0, sizeof(discordPresence));
 	discordPresence.state = state;
 	discordPresence.details = details;
-	discordPresence.largeImageKey = large_image_key;
-	discordPresence.smallImageKey = small_image_key;
-	discordPresence.largeImageText = large_image_text;
-	discordPresence.smallImageText = small_image_text;
 	discordPresence.startTimestamp = startTime;
+	discordPresence.largeImageKey = large_image_key;
+	discordPresence.largeImageText = large_image_text;
+	discordPresence.smallImageKey = small_image_key;
+	discordPresence.smallImageText = small_image_text;
 	discordPresence.instance = 0;
 	Discord_UpdatePresence(&discordPresence);
 }
