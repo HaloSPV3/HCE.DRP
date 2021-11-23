@@ -78,7 +78,6 @@ void main() {
 				DWORD *changing_settings = (DWORD*)(0x6AFF04);
 				DWORD *widget_open = (DWORD*)(0x6B401C);
 
-				
 				if (*widget_open != 0) {
 					if (*changing_settings != 0xFFFFFFFF) {
 						temp_combined = "Changing game settings";
