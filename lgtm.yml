@@ -1,0 +1,18 @@
+# https://github.com/github/codeql-action#configuration-file
+# https://docs.github.com/en/code-security/secure-coding/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-a-custom-configuration-file
+name: "CodeQL config"
+path_classifiers:
+  library:
+  - exclude: ''
+extraction:
+  csharp:
+    prepare:
+      packages:
+      - git
+    index:
+      solution:
+      - DRP.sln
+      msbuild:
+        arguments:
+        - "/p:UseSharedCompilation=false /nr:false"
+      vstools_version: 15

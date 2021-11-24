@@ -8,5 +8,9 @@
   },
   "issueSettings": {
     "minSeverityLevel": "LOW"
+  },
+  "remediateSettings": {
+    "enableRenovate": "true",
+    "transitiveRemediation": "true"
   }
 }

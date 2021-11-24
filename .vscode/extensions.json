@@ -1,0 +1,31 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "codestream.codestream",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "visualstudioexptteam.vscodeintellicode",
+        "vivaxy.vscode-conventional-commits",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "docsmsft.docs-preview",
+        "docsmsft.docs-yaml",
+        "tamasfe.even-better-toml",
+        "ms-vscode.powershell-preview",
+        "josefpihrt-vscode.roslynator",
+        "azsdktm.securityintellisense",
+        "be5invis.toml",
+        "yeluoqiuzhi.vscode-detect-charset",
+        "redhat.vscode-yaml",
+        "ms-dotnettools.csharp",
+        "fudge.auto-using",
+        "bierner.github-markdown-preview",
+        "emilast.logfilehighlighter",
+        "fernandoescolar.vscode-solution-explorer",
+        "ms-cst-e.vscode-devskim",
+        "aliasadidev.nugetpackagemanagergui",
+        "rogalmic.vscode-xml-complete",
+        "redhat.vscode-xml",
+        "k--kato.docomment"
+    ]
+}

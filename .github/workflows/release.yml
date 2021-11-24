@@ -1,0 +1,64 @@
+name: release
+
+# TODO
+# - Allow workflows to be driven by the project(s)
+
+on:
+  push:
+    branches: [main, develop]
+    paths-ignore:
+      - ".github/**/*.*"
+      - "**/*.md"
+      - "**/*.txt"
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    env:
+      PROJ_RELPATH: "./src/drp.sln"
+
+    steps:
+      ################
+      # SETUP
+      ################
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Required by GitVersion
+          submodules: "recursive"
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+      - run: npm install
+      # Dependents: Semantic Release
+
+      ################
+      # BUILD
+      ################
+      - name: build solution
+        run: |
+          msbuild $env:CSPROJ_RELPATH /p:Configuration="Release"
+
+      # required variables: GitVersion_FullSemVer
+      - name: Compress-PublishArtifacts
+        run: |
+          $publishPath = Resolve-Path ".\bin\Release\";
+          $archiveName = "$env:ASSEMBLYNAME.$env:GitVersion_FullSemVer.zip";
+          Set-Location $publishPath;
+          Compress-Archive -Path $publishPath -DestinationPath $archiveName -CompressionLevel Optimal;
+
+      ################
+      # RELEASE
+      ################
+      # https://github.com/marketplace/actions/action-for-semantic-release
+      - name: Setup Semantic Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: publish-artifacts
+          path: bin/Release/

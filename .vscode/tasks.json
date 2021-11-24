@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "powershell.exe",
+        "args": [
+          "/C",
+          /*
+            Install-Module Enter-VSDevEnv
+            Import-Module Enter-VSDevEnv
+            Enter-VSDevEnv
+          **/
+          "Import-Module ${workspaceFolder}\\Powershell\\Modules\\PS.Enable-DevEnv\\Enable-DevEnv.ps1m; Enable-DevEnv", // TODO: fix this
+          "&&"
+        ]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "cl.exe build active file",
+      "command": "cl.exe",
+      "args": [
+        "/Zi",
+        "/EHsc",
+        "/Fe:",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "${file}"
+      ],
+      "problemMatcher": ["$msCompile"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

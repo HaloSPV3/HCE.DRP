@@ -1,0 +1,5 @@
+[submodule "hxe"]
+	path = ext/hxe
+	url = https://github.com/HaloSPV3/hxe
+	branch = main
+	ignore = all
