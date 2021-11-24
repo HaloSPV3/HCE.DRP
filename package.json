@@ -1,0 +1,30 @@
+{
+  "name": "HCE.DRP.npm",
+  "description": "Automate commit messages quality, changelog generation, and release creation",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "commitizen": "^4.2.4",
+    "conventional-changelog-conventionalcommits": "^4.6.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^7.0.4",
+    "semantic-release": "^18.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "husky": {
+      "hooks": {
+        "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+      }
+    }
+  },
+  "scripts": {
+    "cm": "cz",
+    "prepare": "husky install"
+  }
+}

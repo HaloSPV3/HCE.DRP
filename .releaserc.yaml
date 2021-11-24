@@ -1,0 +1,38 @@
+{
+  # docs: https://semantic-release.gitbook.io/semantic-release/usage/workflow-configuration#branch-types
+  "branches": [
+    {name: "main" },
+    {name: "develop", channel: "alpha", prerelease: "alpha"}
+  ],
+  "plugins": [
+    ["@semantic-release/commit-analyzer",{
+      # docs: https://github.com/semantic-release/commit-analyzer/blob/master/lib/default-release-rules.js
+      "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]
+      },
+      "preset": "conventionalcommits",
+      "presetConfig": [ ],
+      "releaseRules": [
+        {"type": "revert", "subject": "!(feat|fix|perf)", "release": false},
+        {"type": "revert", "subject": "(build|chore|ci|docs|refactor|revert|style|test)", "release": false}
+      ]
+    }],
+    ["@semantic-release/release-notes-generator",{
+      "parserOpts": {
+        "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"]},
+      "preset": "conventionalcommits",
+      "presetConfig": [ ],
+      "releaseRules": [
+        {"type": "revert", "subject": "!(feat|fix|perf)", "release": false},
+        {"type": "revert", "subject": "(build|chore|ci|docs|refactor|revert|style|test)", "release": false}
+      ]
+    }],
+    ['@semantic-release/github',
+      {
+        "assets": [
+          {"path": "bin/release/"}
+        ]
+      }
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+﻿name: ci
+# This workflow demonstrates the minimal requirements for building, publishing, and packing the Solution
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+    - '!**/*.md'
+    - '!**/*.txt'
+
+  pull_request:
+    types:
+    - opened
+    - reopened
+    - ready_for_review
+
+jobs:
+  ################
+  # BUILD
+  ################
+  build:
+    name: Build
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        buildConfig: [ "Release", "Debug" ]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+        fetch-depth: 0
+
+    - name: Build
+      working-directory: ./src/
+      run: msbuild DRP.sln /p:Configuration=${{ matrix.buildConfig }}

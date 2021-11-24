@@ -1,0 +1,11 @@
+# THANKS
+
+In alphabetical order, the following people have contributed directly to HCE.DRP's capabilities:
+
+| Contributor            | Acknowledgement
+| ---------------------- | ---------------------------------------
+| ArecaidianFox          | SPV3 images
+| Emilian "Miris" Roman  | Migrated the codebase to MSBuild/VC++
+| giraffe                | Creator of HCE DRP plugin and its original Discord App; vanilla map images
+| Noah "BinToss" Sherwin | Maintenance, bug fixes
+| SubhadeepJasu          | SPV3 images, current HCE.DRP Discord App

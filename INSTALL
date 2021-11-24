@@ -1,0 +1,23 @@
+# INSTALLATION
+
+HCE.DRP is officially distributed with Halo SPV3; however, to
+install it:
+
+0. Download the [latest release's](https://github.com/HaloSPV3/HCE.DRP/releases/latest) zip.
+1. Open/Extract the Zip archive.
+2. Copy "HCE.DRP.dll" to Halo's...
+    - ..."Controls" folder if you do *not* have [Chimera](https://github.com/SnowyMouse/chimera/) installed.
+    - ..."mods" folder if you *do* have [Chimera](https://github.com/SnowyMouse/chimera/) installed. You can copy almost any DLL to Chimera's mods directory, including ReShade.
+
+Todo
+
+- distribute via HXE
+
+## UPDATING
+
+For now, compare the current File Version against the latest release's version.
+When an update is available, install the new file as you would normally and overwrite the old DLL if needed.
+
+Todo
+
+- update via HXE
