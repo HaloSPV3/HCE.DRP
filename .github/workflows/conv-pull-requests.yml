@@ -5,7 +5,7 @@ on:
     types: [opened, reopened, ready_for_review] # Currently, this action only support these events
 
 jobs:
-  hqprs:
+  cpr:
     runs-on: ubuntu-latest
     steps:
       - name: conventional-pr
