@@ -6,12 +6,7 @@
         "executable": "powershell.exe",
         "args": [
           "/C",
-          /*
-            Install-Module Enter-VSDevEnv
-            Import-Module Enter-VSDevEnv
-            Enter-VSDevEnv
-          **/
-          "Import-Module ${workspaceFolder}\\Powershell\\Modules\\PS.Enable-DevEnv\\Enable-DevEnv.ps1m; Enable-DevEnv", // TODO: fix this
+          "Import-Module ${workspaceFolder}\\Powershell\\Modules\\Posh.Enable-DevEnv\\Enable-DevEnv.ps1m; Enable-DevEnv",
           "&&"
         ]
       }
