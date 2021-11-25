@@ -13,6 +13,3 @@ jobs:
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
           close: false
-          draft: true
-          bot: true
-          issue: true
