@@ -1,5 +1,5 @@
 {
-  "name": "HCE.DRP.npm",
+  "name": "hce.drp.npm",
   "description": "Automate commit messages quality, changelog generation, and release creation",
   "version": "1.0.0",
   "devDependencies": {
@@ -26,5 +26,24 @@
   "scripts": {
     "cm": "cz",
     "prepare": "husky install"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaloSPV3/HCE.DRP.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-rich-presence",
+    "halo"
+  ],
+  "author": "BinToss",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/HaloSPV3/HCE.DRP/issues"
+  },
+  "homepage": "https://github.com/HaloSPV3/HCE.DRP#readme"
 }
