@@ -1,5 +1,4 @@
-[submodule "hxe"]
-	path = ext/hxe
-	url = https://github.com/HaloSPV3/hxe
+[submodule "Powershell/Modules/Enable-VSDevEnv"]
+	path = Powershell/Modules/Enable-VSDevEnv
+	url = https://github.com/BinToss/Posh.Enter-VSDevEnv.git
 	branch = main
-	ignore = all
