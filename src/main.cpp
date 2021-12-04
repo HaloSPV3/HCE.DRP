@@ -10,7 +10,7 @@ struct maps {
 };
 
 const maps SP_MAPS[] = {
-	//Instalation 04
+	//Installation 04
 	{ "spv3a05", "Discovery" },
 	{ "spv3a10", "The Pillar of Autumn" },
 	{ "spv3a30", "Halo" },
