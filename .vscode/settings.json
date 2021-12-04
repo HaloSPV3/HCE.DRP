@@ -28,5 +28,7 @@
       "front_matter_title": ""
     },
     "MD028": false
-  }
+  },
+  "cmake.configureOnOpen": true,
+  "cmake.sourceDirectory": "${workspaceFolder}/src"
 }
