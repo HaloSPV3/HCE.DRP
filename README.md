@@ -20,20 +20,20 @@ Attempting to compile to any other type or platform will cause issues!
 
 The DLL is compiled to the following paths in the following contexts:
 
-        debug                      release
-  ----- -------------------------- ----------------------------
-  x86   .\bin\Debug\controls       .\bin\Release\controls
-  x64   .\bin\x64\Debug\controls   .\bin\x64\Release\controls
+|         | debug                      | release
+| ------- | -------------------------- | ----------------------------
+| **x86** | .\bin\Debug\controls       | .\bin\Release\controls
+| **x64** | .\bin\x64\Debug\controls   | .\bin\x64\Release\controls
 
 ## RESOURCES
 
 The drp/resources directory stores the images used in the Discord Rich
 Presence:
 
-| directory    | description
-| ------------ | --------------------------------------------
-| campaign     | images representing each map
-| difficulty   | images representing each singleplayer difficulty
+| directory  | description
+| ---------- | --------------------------------------------
+| maps       | images representing each map
+| difficulty | images representing each singleplayer difficulty
 
 Images have been generously provided by Arecaidian Fox, giraffe, sbdJazz
 and the rest of the SPV3 crew.
