@@ -1,4 +1,3 @@
-[submodule "Powershell/Modules/Enable-VSDevEnv"]
-	path = Powershell/Modules/Enable-VSDevEnv
-	url = https://github.com/BinToss/Posh.Enter-VSDevEnv.git
-	branch = main
+[submodule "ext/BinPosh.VSSetup"]
+	path = ext/BinPosh.VSSetup
+	url = D:\\Repos\\BinToss\\BinPosh.VSSetup
