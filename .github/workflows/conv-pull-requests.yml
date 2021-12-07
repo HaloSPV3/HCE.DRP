@@ -1,4 +1,5 @@
-﻿name: Conventional Pull Request
+name: Conventional Pull Request
+# See https://github.com/Namchee/conventional-pr
 
 on:
   pull_request:
