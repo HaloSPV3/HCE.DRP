@@ -1,0 +1,3 @@
+Microsoft.VisualStudio.Workload.NativeDesktop
+Microsoft.VisualStudio.Component.WinXP
+Microsoft.Component.VC.Runtime.UCRTSDK

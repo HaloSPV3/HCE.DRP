@@ -6,7 +6,7 @@
         "executable": "powershell.exe",
         "args": [
           "/C",
-          "Import-Module ${workspaceFolder}\\Powershell\\Modules\\Posh.Enable-DevEnv\\Enable-DevEnv.ps1m; Enable-DevEnv",
+          "${workspaceFolder}\\MSBuildTools.ps1",
           "&&"
         ]
       }
