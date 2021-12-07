@@ -16,6 +16,7 @@ catch {
 
 $Filter = (Get-Content .\MSBuildDeps.txt).Split("`n")
 $VSInstallDir = Get-VSInstallDir -Prerelease -Filter $Filter
-Enter-VSDevEnv -VSInstallDir $VSInstallDir
+Write-Host $VSInstallDir
+Enter-VSDevEnv -VsInstallDir $VSInstallDir
 
-cmd.exe (Get-ChildItem $VSInstallDir -Filter 'vcvarsall.bat' -Recurse -File).FullName
+# cmd.exe (Get-ChildItem $VSInstallDir -Filter 'vcvarsall.bat' -Recurse -File).FullName -{
