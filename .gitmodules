@@ -1,3 +1,3 @@
 [submodule "ext/BinPosh.VSSetup"]
 	path = ext/BinPosh.VSSetup
-	url = D:\\Repos\\BinToss\\BinPosh.VSSetup
+	url = https://github.com/BinToss/BinPosh.VSSetup.git
