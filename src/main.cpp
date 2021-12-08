@@ -7,6 +7,7 @@ struct char32 {
 	char str[32];
 };
 
+/// TODO: data-driven map objects. See HaloSPV3/HCE.DRP#17
 struct maps {
 	const char *mapfile_name;
 	const char *map_name;
@@ -42,6 +43,7 @@ const maps SP_MAPS[] = {
 	{ "spv3_engine_elite",      "Engine Room (Covenant/Flood)" },
 };
 
+/// TODO: a conversion to PascalCase would work instead. Multi-Word strings be damned. See HaloSPV3/HCE.DRP#18
 const char *DIFFICULTIES[] = {
 	"Noble",
 	"Normal",
@@ -49,6 +51,7 @@ const char *DIFFICULTIES[] = {
 	"Legendary"
 };
 
+/// TODO: data-driven map objects. See HaloSPV3/HCE.DRP#17
 const char *Difficulties[] = {
 	"noble",
 	"normal",
