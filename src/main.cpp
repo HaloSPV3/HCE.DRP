@@ -1,3 +1,6 @@
+#define _WIN32_WINNT 0x0601 // Minimum targeted Windows version is Windows 7
+#define WINVER 0x0601 // Minimum targeted Windows version is Windows 7
+
 #include "send-presence.h"
 
 struct char32 {
