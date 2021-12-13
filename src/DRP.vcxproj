@@ -38,12 +38,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
     <OutDir>..\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
     <OutDir>..\bin\$(Configuration)\</OutDir>
