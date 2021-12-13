@@ -35,7 +35,6 @@
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
     <OutDir>..\bin\$(Configuration)\</OutDir>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CharacterSet>MultiByte</CharacterSet>
