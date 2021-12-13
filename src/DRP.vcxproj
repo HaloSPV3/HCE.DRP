@@ -46,6 +46,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
     <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>..\bin\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
