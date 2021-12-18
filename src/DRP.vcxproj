@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.props" Condition="Exists('packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -75,6 +76,9 @@
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
+    <ResourceCompile>
+      <AdditionalOptions>/DGV_FULLSEMVER="%GitVersion_FullSemVer%" %(AdditionalOptions)</AdditionalOptions>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -84,9 +88,20 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="DRP.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.targets" Condition="Exists('packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.props'))" />
+    <Error Condition="!Exists('packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GitVersion.MsBuild.5.8.1\build\GitVersion.MsBuild.targets'))" />
+  </Target>
 </Project>
