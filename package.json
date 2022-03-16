@@ -3,7 +3,7 @@
   "description": "This tree contains the DRP (Discord Rich Presence) source code, which\r aims to integrate Halo CE and SPV3 with Discord by allowing players to display the\r mission & difficulty they're playing on.",
   "version": "1.0.0",
   "devDependencies": {
-    "@commitlint/cli": "^16.2.1",
+    "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
