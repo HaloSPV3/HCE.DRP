@@ -1,4 +1,4 @@
-﻿name: ci
+name: ci
 # This workflow demonstrates the minimal requirements for building, publishing, and packing the Solution
 
 on:
@@ -28,7 +28,7 @@ jobs:
         buildConfig: [ "Release", "Debug" ]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
         fetch-depth: 0
