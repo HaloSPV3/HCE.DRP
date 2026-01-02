@@ -22,7 +22,7 @@ jobs:
       ################
       # SETUP
       ################
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Required by GitVersion
           submodules: "recursive"
