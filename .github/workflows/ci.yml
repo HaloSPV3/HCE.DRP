@@ -33,6 +33,9 @@ jobs:
         submodules: 'recursive'
         fetch-depth: 0
 
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
     - name: Build
       working-directory: ./src/
       run: msbuild DRP.sln /p:Configuration=${{ matrix.buildConfig }}

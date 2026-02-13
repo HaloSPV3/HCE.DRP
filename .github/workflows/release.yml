@@ -32,6 +32,9 @@ jobs:
       - run: npm install
       # Dependents: Semantic Release
 
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
       ################
       # BUILD
       ################
