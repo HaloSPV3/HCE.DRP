@@ -1,5 +1,5 @@
-const baseConfig = require('@halospv3/hce.shared-config/commitlintConfig')
+import baseConfig from '@halospv3/hce.shared-config/commitlintConfig';
 
-module.exports = {
+export default {
     ...baseConfig
 };
