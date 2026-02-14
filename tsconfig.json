@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/@halospv3/hce.shared-config/tsconfig.base.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "isolatedDeclarations": false,
+    "allowJs": true,
+    "types": ["node"]
+  },
+  "include": [
+    "./*.ts",
+    "./*.js",
+    "./node_modules/@halospv3/hce.shared-config/src/*.d.ts"
+  ]
+}
