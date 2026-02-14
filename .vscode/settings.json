@@ -41,5 +41,8 @@
     "**/eslint.config.{js,cjs,mjs,ts}",
     "**/.git/HEAD"
   ],
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "cSpell.words": [
+    "halospv"
+  ]
 }
