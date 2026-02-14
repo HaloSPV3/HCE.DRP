@@ -30,5 +30,16 @@
     "MD028": false
   },
   "cmake.configureOnOpen": true,
-  "cmake.sourceDirectory": "${workspaceFolder}/src"
+  "cmake.sourceDirectory": "${workspaceFolder}/src",
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "autoRestart.fileGlobForESLint": [
+    "**/eslint.config.{js,cjs,mjs,ts}",
+    "**/.git/HEAD"
+  ],
+  "eslint.format.enable": true
 }
