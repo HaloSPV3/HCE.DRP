@@ -2,6 +2,7 @@
   "name": "@halospv3/hce.drp",
   "description": "This tree contains the DRP (Discord Rich Presence) source code, which\r aims to integrate Halo CE and SPV3 with Discord by allowing players to display the\r mission & difficulty they're playing on.",
   "version": "1.0.0",
+  "private": true,
   "config": {
     "husky": {
       "hooks": {
