@@ -33,6 +33,6 @@
   },
   "homepage": "https://github.com/HaloSPV3/HCE.DRP#readme",
   "devDependencies": {
-    "@halospv3/hce.shared-config": "^3.6.1"
+    "@halospv3/hce.shared-config": "^3.6.2"
   }
 }
