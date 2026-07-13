@@ -1,0 +1,4 @@
+<Solution>
+  <Folder Name="/src/" Path="src" />
+  <Project Path="src/DRP.vcxproj" />
+</Solution>
