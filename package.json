@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/HaloSPV3/HCE.DRP#readme",
   "devDependencies": {
-    "@halospv3/hce.shared-config": "^3.10.1"
+    "@halospv3/hce.shared-config": "^3.10.1",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/debug": "^4.1.12",
+    "@types/node": "^24.10.13"
   }
 }
