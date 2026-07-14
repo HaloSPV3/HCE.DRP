@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -11,37 +11,65 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <VCTargetsPath Condition="!Exists('$(VCTargetsPath)')">/opt/msvc/MSBuild/Microsoft/VC/v$(VCProjectVersion.Replace(".",""))</VCTargetsPath>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3B2049BE-F1C8-4BE4-A7AA-075B3FC1021F}</ProjectGuid>
     <AssemblyName>HCE.DRP</AssemblyName>
     <RootNamespace>DRP</RootNamespace>
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <PlatformToolset>v141_xp</PlatformToolset>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+
+    <OutputPath Condition="'$(OutputPath)' == ''">../bin/$(Configuration)</OutputPath>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Import Project="$(VCTargetsPath)/Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)/Microsoft.Cpp.props" />
+  <Import Condition="!Exists('$(MSBuildToolsPath)/Microsoft.Common.Targets')"
+    Project="$(MSBuildToolsPath)/Microsoft.Common.targets" />
+  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.BuildSteps.Targets')"
+    Project="$(VCTargetsPath)/Microsoft.BuildSteps.targets" />
+  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.CppCommon.Targets')"
+    Project="$(VCTargetsPath)/Microsoft.CppCommon.targets" />
+
+  <!-- dotnet build
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+Restore complete (0.2s)
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+  DRP failed with 1 error(s) (0.0s)
+    /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.DesignTime.targets(549,5): error MSB4062:
+      The "SetEnv" task could not be loaded from the assembly /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll. Could not load file
+       or assembly '/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll'. The system cannot find the file specified.
+       Confirm that the <UsingTask> declaration is correct, that the assembly and all its dependencies are available, and that the task contains a public
+      class that implements Microsoft.Build.Framework.ITask.
+
+Build failed with 1 error(s) and 6 warning(s) in 0.4s
+ -->
+
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(UserRootDir)/Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)/Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <CharacterSet>MultiByte</CharacterSet>
-    <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>..\bin\$(Configuration)\</OutDir>
+    <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
+    <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
+    <OutDir>../bin/$(Configuration)/</OutDir>
     <UseDebugLibraries>true</UseDebugLibraries>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CharacterSet>MultiByte</CharacterSet>
-    <IncludePath>.\discord-rpc\include;$(IncludePath)</IncludePath>
-    <LibraryPath>.\discord-rpc\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>..\bin\$(Configuration)\</OutDir>
+    <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
+    <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
+    <OutDir>../bin/$(Configuration)/</OutDir>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
@@ -79,14 +107,17 @@
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="send-presence.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="DRP.rc" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(VCTargetsPath)/Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+
+  <Target Name="CopyToPublishOutput" AfterTargets="Build">
+    <Copy Condition="'$(Configuration)' == 'Release'"
+    >
+
+    </Copy>
+  </Target>
 </Project>
