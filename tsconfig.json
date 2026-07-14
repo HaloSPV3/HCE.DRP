@@ -9,7 +9,7 @@
   },
   "include": [
     "./*.ts",
-    "./*.js",
+    "./.*.ts",
     "./node_modules/@halospv3/hce.shared-config/src/*.d.ts"
   ]
 }
