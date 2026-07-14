@@ -4,6 +4,7 @@
     "module": "nodenext",
     "isolatedDeclarations": false,
     "allowJs": true,
+    "strict": true,
     "types": [ "node" ]
   },
   "include": [
