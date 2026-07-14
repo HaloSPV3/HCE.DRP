@@ -30,8 +30,8 @@
   "devDependencies": {
     "@halospv3/hce.shared-config": "^3.10.1",
     "@tsconfig/node24": "^24.0.4",
-    "@types/debug": "^4.1.12",
-    "@types/node": "^24.10.13"
+    "@types/debug": "^4.1.13",
+    "@types/node": "^24.13.3"
   },
   "allowScripts": {
     "@halospv3/hce.shared-config": false
