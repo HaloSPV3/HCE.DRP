@@ -25,6 +25,31 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)/Microsoft.Cpp.Default.props" />
   <Import Project="$(VCTargetsPath)/Microsoft.Cpp.props" />
+  <Import Condition="!Exists('$(MSBuildToolsPath)/Microsoft.Common.Targets')"
+    Project="$(MSBuildToolsPath)/Microsoft.Common.targets" />
+  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.BuildSteps.Targets')"
+    Project="$(VCTargetsPath)/Microsoft.BuildSteps.targets" />
+  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.CppCommon.Targets')"
+    Project="$(VCTargetsPath)/Microsoft.CppCommon.targets" />
+
+  <!-- dotnet build
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+Restore complete (0.2s)
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
+  DRP failed with 1 error(s) (0.0s)
+    /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.DesignTime.targets(549,5): error MSB4062:
+      The "SetEnv" task could not be loaded from the assembly /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll. Could not load file
+       or assembly '/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll'. The system cannot find the file specified.
+       Confirm that the <UsingTask> declaration is correct, that the assembly and all its dependencies are available, and that the task contains a public
+      class that implements Microsoft.Build.Framework.ITask.
+
+Build failed with 1 error(s) and 6 warning(s) in 0.4s
+ -->
+
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="Shared">
