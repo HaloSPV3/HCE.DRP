@@ -36,6 +36,7 @@ endif()
 include(CTest)
 enable_testing()
 
+set(i386 TRUE)
 add_library(HCE.DRP main.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
