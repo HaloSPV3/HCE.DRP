@@ -23,6 +23,16 @@ endif()
 # the name of the target operating system
 set(CMAKE_SYSTEM_NAME Windows)
 
+# region GitVersion
+if("GitVersion")
+  # Add directory of GitVersion to the cmake module path.
+  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+  # Now it can be included like this:
+  include(GitVersion)
+endif()
+
+# endregion GitVersion
 include(CTest)
 enable_testing()
 
