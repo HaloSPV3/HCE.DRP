@@ -1,6 +1,28 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(HCE.DRP VERSION 1.0.1)
 
+if(NOT IS_DIRECTORY "${MSVC_ROOT}")
+  set(MSVC_ROOT "/opt/msvc")
+endif()
+
+if(UNIX AND NOT APPLE)
+  set(LINUX TRUE)
+endif()
+
+if(LINUX)
+  # include_directories(
+  # ${MSVC_ROOT}/vc/tools/msvc/14.44.35207/include/
+  # ${MSVC_ROOT}/kits/10/Include/10.0.26100.0/shared/
+  # ${MSVC_ROOT}/kits/10/Include/10.0.26100.0/ucrt/
+  # ${MSVC_ROOT}/kits/10/Include/10.0.26100.0/um/
+  # )
+  set(BIN "${MSVC_ROOT}/bin/x64")
+  exec_program(. ./msvcenv-native.sh)
+endif()
+
+# the name of the target operating system
+set(CMAKE_SYSTEM_NAME Windows)
+
 include(CTest)
 enable_testing()
 
