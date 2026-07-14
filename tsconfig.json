@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@halospv3/hce.shared-config/tsconfig.base.json",
+  "extends": "@halospv3/hce.shared-config/tsconfig.base.json",
   "compilerOptions": {
     "module": "nodenext",
     "isolatedDeclarations": false,
