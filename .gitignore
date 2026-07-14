@@ -1,3 +1,8 @@
+.eslintcache
+DartConfiguration.tcl
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
 **/.DS_Store
 
 # CodeQL Databases
@@ -415,5 +420,3 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
-
-.eslintcache
