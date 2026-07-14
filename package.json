@@ -7,7 +7,7 @@
   "scripts": {
     "postinstall": "husky",
     "lint": "eslint --cache",
-    "test": ""
+    "test": "exit"
   },
   "directories": {
     "doc": "doc"
