@@ -31,5 +31,8 @@
     "@tsconfig/node24": "^24.0.4",
     "@types/debug": "^4.1.12",
     "@types/node": "^24.10.13"
+  },
+  "allowScripts": {
+    "@halospv3/hce.shared-config": false
   }
 }
