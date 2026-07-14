@@ -44,5 +44,6 @@
   "eslint.format.enable": true,
   "cSpell.words": [
     "halospv"
-  ]
+  ],
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
