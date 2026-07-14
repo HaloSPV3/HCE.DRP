@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "husky",
+    "lint": "eslint --cache",
     "test": ""
   },
   "directories": {
