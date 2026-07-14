@@ -13,6 +13,8 @@
   <PropertyGroup Label="Globals">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <VCProjectVersion>18.0</VCProjectVersion>
+    <MSVC_ROOT Condition="!Exists('$(MSVC_ROOT)')">/opt/msvc</MSVC_ROOT>
+    <VCTargetsPath Condition="!Exists('$(VCTargetsPath)')">$(MSVC_ROOT)/MSBuild/Microsoft/VC/v$(VCProjectVersion.Replace(".",""))</VCTargetsPath>
     <ProjectGuid>{3B2049BE-F1C8-4BE4-A7AA-075B3FC1021F}</ProjectGuid>
     <AssemblyName>HCE.DRP</AssemblyName>
     <RootNamespace>DRP</RootNamespace>
