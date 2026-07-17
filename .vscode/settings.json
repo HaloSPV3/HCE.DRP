@@ -43,7 +43,11 @@
   ],
   "eslint.format.enable": true,
   "cSpell.words": [
-    "halospv"
+    "Arecaidian",
+    "COMDAT",
+    "ctest",
+    "halospv",
+    "msvc"
   ],
   "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
