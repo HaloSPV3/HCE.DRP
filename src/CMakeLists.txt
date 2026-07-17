@@ -20,6 +20,13 @@ if(LINUX)
   exec_program(. ./msvcenv-native.sh)
 endif()
 
+# region vcpkg
+if("vcpkg")
+  include($VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake)
+endif()
+
+# endregion vcpkg
+
 # the name of the target operating system
 set(CMAKE_SYSTEM_NAME Windows)
 
