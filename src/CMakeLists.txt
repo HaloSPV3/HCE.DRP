@@ -33,6 +33,8 @@ if("GitVersion")
 endif()
 
 # endregion GitVersion
+
+# CTest
 include(CTest)
 enable_testing()
 
