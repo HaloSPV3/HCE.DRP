@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(HCE.DRP VERSION 1.0.1)
 
-if(NOT IS_DIRECTORY "${MSVC_ROOT}")
-  set(MSVC_ROOT "/opt/msvc")
-endif()
-
 if(UNIX AND NOT APPLE)
   set(LINUX TRUE)
+endif()
+
+if(NOT IS_DIRECTORY "${MSVC_ROOT}")
+  set(MSVC_ROOT "/opt/msvc")
 endif()
 
 if(LINUX)
