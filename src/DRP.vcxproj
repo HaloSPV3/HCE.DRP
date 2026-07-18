@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectCapability Include="PackageReferences" />
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -9,8 +10,24 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="LinuxDebug|Win32">
+      <Configuration>LinuxDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="LinuxRelease|Win32">
+      <Configuration>LinuxRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(DesignTimeBuild)'!='true' AND ($(Configuration.Contains('Linux')) OR $(Platform.Contains('Linux')))">./</VCTargetsPath>
+    <MSBuildProjectExtensionsPath Condition="'$(DesignTimeBuild)'!='true' AND ($(Configuration.Contains('Linux')) OR $(Platform.Contains('Linux')))">./</MSBuildProjectExtensionsPath>
+    <GCCBuild_UseWSL>false</GCCBuild_UseWSL>
+    <GCCToolCompilerStyle Condition="$(Configuration.Contains('Wasm'))">llvm</GCCToolCompilerStyle>
+    <VCTargetsPath Condition="'$(DesignTimeBuild)'!='true' AND $(Configuration.Contains('Wasm'))">./</VCTargetsPath>
+    <MSBuildProjectExtensionsPath Condition="'$(DesignTimeBuild)'!='true' AND $(Configuration.Contains('Wasm'))">./</MSBuildProjectExtensionsPath>
+    <VCTargetsPath Condition="'$(DesignTimeBuild)'!='true' AND ($(Configuration.Contains('GCC')) OR $(Platform.Contains('GCC')))">./</VCTargetsPath>
+    <MSBuildProjectExtensionsPath Condition="'$(DesignTimeBuild)'!='true' AND ($(Configuration.Contains('GCC')) OR $(Platform.Contains('GCC')))">./</MSBuildProjectExtensionsPath>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <VCProjectVersion>18.0</VCProjectVersion>
     <MSVC_ROOT Condition="!Exists('$(MSVC_ROOT)')">/opt/msvc</MSVC_ROOT>
@@ -24,31 +41,6 @@
     <OutputPath Condition="'$(OutputPath)' == ''">../bin/$(Configuration)</OutputPath>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)/Microsoft.Cpp.Default.props" />
-  <Import Project="$(VCTargetsPath)/Microsoft.Cpp.props" />
-  <Import Condition="!Exists('$(MSBuildToolsPath)/Microsoft.Common.Targets')"
-    Project="$(MSBuildToolsPath)/Microsoft.Common.targets" />
-  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.BuildSteps.Targets')"
-    Project="$(VCTargetsPath)/Microsoft.BuildSteps.targets" />
-  <Import Condition="!Exists('$(VCTargetsPath)/Microsoft.CppCommon.Targets')"
-    Project="$(VCTargetsPath)/Microsoft.CppCommon.targets" />
-
-  <!-- dotnet build
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-Restore complete (0.2s)
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.targets(35,3): warning MSB4011: "/usr/share/dotnet/sdk/10.0.301/Microsoft.Common.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (27,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppBuild.targets(41,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.BuildSteps.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (29,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.MissingToolset.targets(45,3): warning MSB4011: "/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.CppCommon.Targets" cannot be imported again. It was already imported at "/home/noah/repos/HaloSPV3/HCE.DRP/src/DRP.vcxproj (31,3)". This is most likely a build authoring error. This subsequent import will be ignored.
-  DRP failed with 1 error(s) (0.0s)
-    /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Cpp.DesignTime.targets(549,5): error MSB4062:
-      The "SetEnv" task could not be loaded from the assembly /opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll. Could not load file
-       or assembly '/opt/msvc/MSBuild/Microsoft/VC/v180/Microsoft.Build.CppTasks.Common.dll'. The system cannot find the file specified.
-       Confirm that the <UsingTask> declaration is correct, that the assembly and all its dependencies are available, and that the task contains a public
-      class that implements Microsoft.Build.Framework.ITask.
-
-Build failed with 1 error(s) and 6 warning(s) in 0.4s
- -->
 
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -58,7 +50,7 @@ Build failed with 1 error(s) and 6 warning(s) in 0.4s
     <Import Project="$(UserRootDir)/Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)/Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration.Contains(`Debug`))'">
     <CharacterSet>MultiByte</CharacterSet>
     <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
     <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
@@ -66,7 +58,7 @@ Build failed with 1 error(s) and 6 warning(s) in 0.4s
     <UseDebugLibraries>true</UseDebugLibraries>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <PropertyGroup Condition="'$(Configuration.Contains(`Release`))'">
     <CharacterSet>MultiByte</CharacterSet>
     <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
     <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
@@ -75,7 +67,7 @@ Build failed with 1 error(s) and 6 warning(s) in 0.4s
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration.Contains(`Debug`))'=='true'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -87,7 +79,7 @@ Build failed with 1 error(s) and 6 warning(s) in 0.4s
       <LargeAddressAware>true</LargeAddressAware>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration.Contains(`Release`))'=='true'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
@@ -111,13 +103,17 @@ Build failed with 1 error(s) and 6 warning(s) in 0.4s
     <ClCompile Include="main.cpp" />
     <ResourceCompile Include="DRP.rc" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)/Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
 
-  <Target Name="CopyToPublishOutput" AfterTargets="Build">
-    <Copy Condition="'$(Configuration)' == 'Release'"
+  <Target Condition="'$(Configuration.Contains(Release))'"
+    Name="CopyToPublishOutput" AfterTargets="Build">
+    <Copy
       SourceFiles="$(OutputPath)"
       DestinationFolder="$(MSBuildProjectDirectory)/../publish" />
   </Target>
+
+  <ItemGroup>
+    <PackageReference Include="GCCBuildTargets" Version="2.*" />
+  </ItemGroup>
 </Project>
