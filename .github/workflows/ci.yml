@@ -7,6 +7,7 @@ on:
     paths:
     - '!**/*.md'
     - '!**/*.txt'
+  workflow_call:
 
   pull_request:
     types:
@@ -37,5 +38,4 @@ jobs:
       uses: microsoft/setup-msbuild@v3
 
     - name: Build
-      working-directory: ./src/
-      run: msbuild DRP.sln /p:Configuration=${{ matrix.buildConfig }}
+      run: msbuild DRP.slnx /p:Configuration=${{ matrix.buildConfig }}
