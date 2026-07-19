@@ -38,7 +38,12 @@
     <!-- v141_xp would be ideal, but may break Discord's old Rich Presence library  -->
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <CharacterSet>MultiByte</CharacterSet>
+    <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
+    <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
     <OutputPath Condition="'$(OutputPath)' == ''">../bin/$(Configuration)</OutputPath>
+    <OutDir Condition="'$(OutDir)' == ''">../bin/$(Configuration)/$(Platform)</OutDir>
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)/Microsoft.Cpp.Default.props" />
 
@@ -51,21 +56,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration.Contains(`Debug`))'">
-    <CharacterSet>MultiByte</CharacterSet>
-    <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
-    <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
-    <OutDir>../bin/$(Configuration)/</OutDir>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration.Contains(`Release`))'">
-    <CharacterSet>MultiByte</CharacterSet>
-    <IncludePath>./discord-rpc/include;$(IncludePath)</IncludePath>
-    <LibraryPath>./discord-rpc/lib;$(LibraryPath)</LibraryPath>
-    <OutDir>../bin/$(Configuration)/</OutDir>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration.Contains(`Debug`))'=='true'">
     <ClCompile>
