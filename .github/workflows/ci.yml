@@ -38,4 +38,4 @@ jobs:
       uses: microsoft/setup-msbuild@v3
 
     - name: Build
-      run: msbuild DRP.slnx /p:Configuration=${{ matrix.buildConfig }}
+      run: msbuild src /p:Configuration=${{ matrix.buildConfig }}
