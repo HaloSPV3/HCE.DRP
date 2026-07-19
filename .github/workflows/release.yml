@@ -26,8 +26,6 @@ jobs:
       issues: write # comment on released issues
       packages: write # push packages to "HaloSPV3" GitHub Nuget Package Registry
       pull-requests: write # comment on released pull requests
-    env:
-      PROJ_RELPATH: "./src/drp.slnx"
 
     steps:
       - uses: actions/checkout@v7
@@ -51,7 +49,7 @@ jobs:
       ################
       - name: build solution
         run: |
-          msbuild $env:PROJ_RELPATH /p:Configuration="Release"
+          msbuild src /p:Configuration="Release"
 
       # required variables: GitVersion_FullSemVer
       - name: Compress-PublishArtifacts
