@@ -12,24 +12,35 @@ on:
       - "**/*.txt"
 
 jobs:
-  build:
-    name: Build
+  ci:
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+  release:
+    name: Release
+    # required for proper WPF builds/publishes
     runs-on: windows-latest
+    needs: ci
+    permissions:
+      contents: write # publish a GitHub Release
+      issues: write # comment on released issues
+      packages: write # push packages to "HaloSPV3" GitHub Nuget Package Registry
+      pull-requests: write # comment on released pull requests
     env:
-      PROJ_RELPATH: "./src/drp.sln"
+      PROJ_RELPATH: "./src/drp.slnx"
 
     steps:
-      ################
-      # SETUP
-      ################
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Required by GitVersion
           submodules: "recursive"
 
+      - run: corepack enable
       - name: Setup Node
         uses: actions/setup-node@v7
-      - run: npm install
+      - run: corepack enable
+
+      - run: yarn install
       # Dependents: Semantic Release
 
       - name: Add msbuild to PATH
@@ -40,12 +51,12 @@ jobs:
       ################
       - name: build solution
         run: |
-          msbuild $env:CSPROJ_RELPATH /p:Configuration="Release"
+          msbuild $env:PROJ_RELPATH /p:Configuration="Release"
 
       # required variables: GitVersion_FullSemVer
       - name: Compress-PublishArtifacts
         run: |
-          $publishPath = Resolve-Path ".\bin\Release\";
+          $publishPath = Resolve-Path "./publish/";
           $archiveName = "$env:ASSEMBLYNAME.$env:GitVersion_FullSemVer.zip";
           Set-Location $publishPath;
           Compress-Archive -Path $publishPath -DestinationPath $archiveName -CompressionLevel Optimal;
@@ -55,10 +66,9 @@ jobs:
       ################
       # https://github.com/marketplace/actions/action-for-semantic-release
       - name: Setup Semantic Release
-        run: npx semantic-release
+        run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
