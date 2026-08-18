@@ -15,6 +15,10 @@
     "commitizen",
     "SPV3"
   ],
+  "files.associations": {
+    ".vscode/*.json": "jsonc",
+    ".vcxproj": "msbuild"
+  },
   "xml.codeLens.enabled": true,
   "github-actions.workflows.pinned.workflows": [
     ".github/workflows/release.yml",
