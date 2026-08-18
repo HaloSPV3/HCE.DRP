@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
+    <EnableNativePackageReferenceSupport>true</EnableNativePackageReferenceSupport>
+    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
     <NoLogo>true</NoLogo>
 
     <RepoRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/index'))</RepoRoot>
