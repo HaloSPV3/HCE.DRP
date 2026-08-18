@@ -49,5 +49,11 @@
     "halospv",
     "msvc"
   ],
-  "js/ts.tsdk.path": "node_modules/typescript/lib"
+  "eslint.nodePath": ".yarn/sdks",
+  "js/ts.tsdk.path": ".yarn/sdks/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  }
 }

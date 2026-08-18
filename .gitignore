@@ -1,4 +1,18 @@
+tsconfig.tsbuildinfo
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 .eslintcache
+.dotnet
+.dotnet-win
+.tsout
+
+.env*
+
 DartConfiguration.tcl
 CPackConfig.cmake
 CPackSourceConfig.cmake
@@ -7,7 +21,7 @@ CPackSourceConfig.cmake
 
 # CodeQL Databases
 codeql/
-databases/
+[Dd]atabases
 
 # Git hash identification file
 hash
@@ -240,9 +254,6 @@ PublishScripts/
 *.nuget.props
 *.nuget.targets
 
-# Nuget personal access tokens and Credentials
-# nuget.config
-
 # Microsoft Azure Build Output
 csx/
 *.build.csdef
@@ -284,6 +295,8 @@ orleans.codegen.cs
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
+# ASP.NET Core default setup: bower directory is configured as wwwroot/lib/ and bower restore is true
+**/wwwroot/lib/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -345,6 +358,10 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
 
 # CodeRush personal settings
 .cr/personal
@@ -416,7 +433,3 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
-
-# JetBrains Rider
-.idea/
-*.sln.iml

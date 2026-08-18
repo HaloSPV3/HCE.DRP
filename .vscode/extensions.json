@@ -20,6 +20,8 @@
     "aliasadidev.nugetpackagemanagergui",
     "rogalmic.vscode-xml-complete",
     "redhat.vscode-xml",
-    "k--kato.docomment"
+    "k--kato.docomment",
+    "arcanis.vscode-zipfs",
+    "dbaeumer.vscode-eslint"
   ]
 }
