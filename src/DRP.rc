@@ -67,7 +67,7 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", ""
-            VALUE "FileDescription", "Display your Halo: CE game status in your Discord profile. Utilizes SubhadeepJazz's Heroku app for images and text displayed in Discord."
+            VALUE "FileDescription", "Display your Halo: CE game status in your Discord profile. Utilizes a replacement Discord service for images and text displayed in Discord."
             VALUE "FileVersion", "1.0.5.0"
             VALUE "InternalName", "DRP.dll"
             VALUE "LegalCopyright", "Copyright (C) 2021 Noah Sherwin"
