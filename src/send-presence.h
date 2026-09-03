@@ -7,7 +7,7 @@ This is a simple example in C of using the rich presence API asyncronously.
 #define _CRT_SECURE_NO_WARNINGS /* thanks Microsoft */
 
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include <math.h>
 #include <algorithm>
 #include <codecvt>
