@@ -13,6 +13,7 @@ struct maps {
 	const char *map_name;
 };
 
+// clang-format off
 const maps SP_MAPS[] = {
 	//Installation 04
 	{ "spv3a05", "Discovery" },
@@ -35,13 +36,15 @@ const maps SP_MAPS[] = {
 	{ "spv3_lumoria_b", "Valley Battle" },
 	{ "spv3_lumoria_cd", "Fight for the Future" },
 	//Firefight
-	{ "spv3_rockslide_spartan", "Rockslide (UNSC/Covenant)" },
-	{ "spv3_rockslide_flood",   "Rockslide (UNSC/Flood)" },
-	{ "spv3_rockslide_elite",   "Rockslide (Covenant/Flood)" },
-	{ "spv3_engine_spartan",    "Engine Room (UNSC/Covenant)" },
-	{ "spv3_engine_flood",      "Engine Room (UNSC/Flood)" },
-	{ "spv3_engine_elite",      "Engine Room (Covenant/Flood)" },
+	{ "spv3_rockslide_spartan",	"Rockslide (UNSC/Covenant)" },
+	{ "spv3_rockslide_flood",		"Rockslide (UNSC/Flood)" },
+	{ "spv3_rockslide_elite",		"Rockslide (Covenant/Flood)" },
+
+	{ "spv3_engine_spartan",		"Engine Room (UNSC/Covenant)" },
+	{ "spv3_engine_flood",			"Engine Room (UNSC/Flood)" },
+	{ "spv3_engine_elite",			"Engine Room (Covenant/Flood)" },
 };
+// clang-format on
 
 /// TODO: a conversion to PascalCase would work instead. Multi-Word strings be damned. See HaloSPV3/HCE.DRP#18
 const char *DIFFICULTIES[] = {
