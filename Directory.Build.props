@@ -16,7 +16,6 @@
     </NuGetLockFilePath>
 
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
-    <EnableNativePackageReferenceSupport>true</EnableNativePackageReferenceSupport>
   </PropertyGroup>
 
   <PropertyGroup Label="Yarn-unplugged HCE.Shared" Condition="!Exists($(HCESharedDir))">
