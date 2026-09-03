@@ -15,7 +15,6 @@
       $(MSBuildProjectDirectory)/packages-debug.$(_MSBuildProjectNameUnderscored).lock.json
     </NuGetLockFilePath>
 
-    <NET6_0_OR_GREATER Condition="'$(TargetFramework)' != ''">$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))</NET6_0_OR_GREATER>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <EnableNativePackageReferenceSupport>true</EnableNativePackageReferenceSupport>
   </PropertyGroup>
