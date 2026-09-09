@@ -17,6 +17,9 @@ DartConfiguration.tcl
 CPackConfig.cmake
 CPackSourceConfig.cmake
 
+src/vcpkg_installed
+ports
+
 **/.DS_Store
 
 # CodeQL Databases
