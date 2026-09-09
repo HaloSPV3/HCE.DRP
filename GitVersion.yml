@@ -1,14 +1,14 @@
 # https://github.com/GitTools/GitVersion/blob/main/docs/input/docs/reference/configuration.md
 mode: ContinuousDeployment
-tag-prefix: '[vV]'
+tag-prefix: '(HCE.DRP/)?[vV]'
 major-version-bump-message: "^(breaking|build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\\([\\w\\s]*\\))?(!:|:.*\\n\\n((.+\\n)+\\n)?BREAKING CHANGE:\\s.+)"
 minor-version-bump-message: "^(feat)(\\([\\w\\s]*\\))?:"
 patch-version-bump-message: "^(fix|perf)(\\([\\w\\s]*\\))?:"
 branches:
   develop:
-    increment: none # IMPORTANT
+    increment: None # IMPORTANT
   main:
-    increment: none # IMPORTANT
+    increment: None # IMPORTANT
     is-release-branch: true
 ignore:
   sha: []
