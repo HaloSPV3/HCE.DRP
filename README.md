@@ -5,10 +5,12 @@ aims to integrate Halo CE and SPV3 with Discord by allowing players to display t
 mission & difficulty they're playing on.
 
 The source code has been generously developed and provided by giraffe,
-and has been integrated into a custom Visual C++ project for convenient
+and has been integrated into a CMake project for convenient
 reproducible builds.
 
 ## COMPILING
+
+> This section was written for the Visual C++ project. It will be updated to CMake instructions soon™.
 
 In Visual Studio, the project MUST be compiled with the following
 configuration:
