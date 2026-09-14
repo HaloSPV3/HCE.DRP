@@ -16,7 +16,7 @@
     "SPV3"
   ],
   "files.associations": {
-    ".vscode/*.json": "jsonc",
+    "**/.vscode/*.json": "jsonc",
     ".vcxproj": "msbuild"
   },
   "xml.codeLens.enabled": true,
