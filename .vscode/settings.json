@@ -17,7 +17,8 @@
   ],
   "files.associations": {
     "**/.vscode/*.json": "jsonc",
-    ".vcxproj": "msbuild"
+    ".vcxproj": "msbuild",
+    ".nativeproj": "msbuild"
   },
   "xml.codeLens.enabled": true,
   "github-actions.workflows.pinned.workflows": [
