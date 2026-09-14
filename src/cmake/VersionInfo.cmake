@@ -181,7 +181,7 @@ function(versioninfo_setup_filetype_subtype TYPE_OUTVAR SUBTYPE_OUTVAR)
       endif()
 
       if((TARGET_TYPE STREQUAL "SHARED_LIBRARY" OR TARGET_TYPE STREQUAL "MODULE_LIBRARY") AND NOT ARGS_MAP_FILE_TYPE STREQUAL "VFT_DLL")
-        message(WRNING "Bad target file type for call to VersionInfo_Generate")
+        message(WARNING "Bad target file type for call to VersionInfo_Generate")
       endif()
     endif()
 
