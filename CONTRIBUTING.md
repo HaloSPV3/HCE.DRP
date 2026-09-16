@@ -2,7 +2,9 @@
 
 This document outlines how to contribute to this sadistic repository.
 
-## REQUIREMENTS
+## REQUIREMENTS (OUTDATED)
+
+TODO: review requirements building and contributing
 
 - Visual Studio Installer
   - Visual Studio 2017/2019/2022
