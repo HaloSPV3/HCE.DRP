@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
     <EnableNativePackageReferenceSupport>true</EnableNativePackageReferenceSupport>
-    <AssetTargetFallback>$(AssetTargetFallback);native</AssetTargetFallback>
-    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <NoLogo>true</NoLogo>
+    <PublishRelease>true</PublishRelease>
 
     <RepoRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/index'))</RepoRoot>
     <_HCESharedDirSuffix>node_modules/@halospv3/hce.shared-config/</_HCESharedDirSuffix>
@@ -15,8 +15,6 @@
     <NuGetLockFilePath Condition="'$(Configuration)' == Debug AND Exists('$(MSBuildProjectDirectory)/packages.$(_MSBuildProjectNameUnderscored).lock.json')">
       $(MSBuildProjectDirectory)/packages-debug.$(_MSBuildProjectNameUnderscored).lock.json
     </NuGetLockFilePath>
-
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <PropertyGroup Label="Yarn-unplugged HCE.Shared" Condition="!Exists($(HCESharedDir))">

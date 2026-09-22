@@ -1,0 +1,212 @@
+{
+  "version": 10,
+  "$comment": [
+    "https://github.com/royyandzakiy/cmake-dll-example/blob/master/CMakePresets.json"
+  ],
+  "cmakeMinimumRequired": { "major": 4, "minor": 4, "patch": 3 },
+  "buildPresets": [
+    {
+      "name": "core-build",
+      "description": "Inherits environment from base configurePreset",
+      "configurePreset": "core-configure",
+      "hidden": true,
+      "inheritConfigureEnvironment": true,
+      "resolvePackageReferences": "on",
+      "configuration": "MinSizeRel"
+    },
+    { "name": "-debug", "configuration": "Debug", "hidden": true },
+    {
+      "name": "windows",
+      "inherits": [ "core-build" ],
+      "configurePreset": "windows-base"
+    },
+    { "name": "windows-debug", "inherits": [ "-debug", "windows" ], "configurePreset": "windows-debug" },
+    {
+      "name": "windows-clean-build",
+      "description": "Clean before build (--clean-first)",
+      "configurePreset": "windows-base",
+      "inherits": [ "core-build" ],
+      "cleanFirst": true
+    },
+    {
+      "name": "windows-verbose-build",
+      "description": "Passes -v to Ninja",
+      "configurePreset": "windows-base",
+      "inherits": [ "core-build" ],
+      "configuration": "Debug",
+      "verbose": true,
+      "nativeToolOptions": [ "-verbosity:normal" ]
+    },
+    {
+      "name": "macos",
+      "configurePreset": "macos-base",
+      "inherits": [ "core-build" ]
+    },
+    { "name": "macos-debug", "inherits": [ "-debug", "macos" ], "configurePreset": "macos-debug" },
+    {
+      "name": "macos-clean-build",
+      "description": "Clean before build (--clean-first)",
+      "configurePreset": "macos-base",
+      "inherits": [ "core-build" ],
+      "cleanFirst": true
+    },
+    {
+      "name": "macos-verbose-build",
+      "description": "Passes -v to Ninja",
+      "configurePreset": "macos-base",
+      "inherits": [ "core-build" ],
+      "nativeToolOptions": [ "-v" ]
+    },
+    {
+      "name": "linux",
+      "configurePreset": "linux-base",
+      "inherits": [ "core-build" ]
+    },
+    { "name": "linux-debug", "inherits": [ "-debug", "linux" ], "configurePreset": "linux-debug" },
+    {
+      "name": "linux-clean-build",
+      "description": "Clean before build (--clean-first)",
+      "configurePreset": "linux-base",
+      "inherits": [ "core-build" ],
+      "cleanFirst": true
+    },
+    {
+      "name": "linux-verbose-build",
+      "description": "Passes -v to Ninja",
+      "configurePreset": "linux-base",
+      "inherits": [ "core-build" ],
+      "nativeToolOptions": [ "-v" ]
+    }
+  ],
+  "configurePresets": [
+    {
+      "$comment": "binaryDir must match MSBuildCMake's buildir variable.",
+      "name": "core-configure",
+      "displayName": "Base Config",
+      "binaryDir": "${sourceParentDir}/artifacts/obj/DRP/release_win-x86/win-x86/x86",
+      "cacheVariables": {
+        "NATIVE_OUTPUT_FOLDER": "${sourceParentDir}/artifacts/bin/DRP/release_win-x86/win-x86/native",
+        "VCPKG_TARGET_TRIPLET": "x86-mingw-static-release"
+      },
+      "description": "Base build using vcpkg and Ninja generator",
+      "generator": "Ninja",
+      "hidden": true
+    },
+    { "name": "-debug", "hidden": true,
+      "binaryDir": "${sourceParentDir}/artifacts/obj/DRP/debug_win-x86/win-x86/x86",
+      "cacheVariables": { "NATIVE_OUTPUT_FOLDER": "${sourceParentDir}/artifacts/bin/DRP/debug_win-x86/win-x86/native" }
+    },
+    {
+      "name": "windows-base",
+      "description": "Sets x86 arch, compilers, build type",
+      "inherits": [ "core-configure" ],
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x86",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": "x86-windows-static-md"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Windows" ]
+        }
+      }
+    },
+    { "name": "windows-debug", "inherits": [ "-debug", "windows-base" ] },
+    {
+      "name": "macos-base",
+      "description": "Sets compilers, build type",
+      "inherits": [ "core-configure" ],
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "macOS" ]
+        }
+      }
+    },
+    { "name": "macos-debug", "inherits": [ "-debug", "macos-base" ] },
+    {
+      "name": "linux-base",
+      "description": "Sets compilers, build type",
+      "inherits": "core-configure",
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Linux" ]
+        }
+      }
+    },
+    { "name": "linux-debug", "inherits": [ "-debug", "linux-base" ] },
+    {
+      "name": "linux-warnings",
+      "description": "Enables dev warnings (-wdev)",
+      "inherits": "linux-base",
+      "warnings": { "dev": true }
+    },
+    {
+      "name": "msvc-wine",
+      "description": "Use the MSVC toolset via Wine",
+      "inherits": "windows-base",
+      "cacheVariables": {
+        "USE_MSVC_WINE": true,
+        "VCPKG_OVERLAY_TRIPLETS": "./cmake/triplets/msvc-wine"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": [ "Linux", "macOS" ]
+        }
+      }
+    },
+    { "name": "msvc-wine-debug", "inherits": [ "msvc-wine", "-debug" ] }
+  ],
+  "packagePresets": [ { "name": "default", "configurePreset": "core-configure" } ],
+  "testPresets": [
+    {
+      "name": "core-test",
+      "description": "Enable output on failure",
+      "configurePreset": "core-configure",
+      "hidden": false,
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "macos-core-test",
+      "configurePreset": "macos-base",
+      "inherits": "core-test"
+    },
+    {
+      "name": "windows-core-test",
+      "configurePreset": "windows-base",
+      "inherits": "core-test"
+    },
+    {
+      "name": "linux-core-test",
+      "configurePreset": "linux-base",
+      "inherits": "core-test"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "core-configure"
+        },
+        {
+          "type": "build",
+          "name": "core-build"
+        },
+        {
+          "type": "test",
+          "name": "core-test"
+        },
+        {
+          "type": "package",
+          "name": "default"
+        }
+      ]
+    }
+  ]
+}

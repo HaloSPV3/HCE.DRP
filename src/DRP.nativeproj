@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="MSBuildCMake.SDK/1.1.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- https://github.com/OpenSteamClient/MSBuildCMake/blob/master/TestProject.Native/TestProject.Native.nativeproj -->
+  <!-- https://github.com/OpenSteamClient/MSBuildCMake/tree/master/Sdk -->
+  <!-- https://github.com/OpenSteamClient/MSBuildCMake/tree/master/crosscomp -->
+  <PropertyGroup>
+    <AssemblyName>halocepresence</AssemblyName>
+    <Platform>x86</Platform> <!-- Mostly useless in this project with this SDK -->
+    <PlatformTarget>x86</PlatformTarget> <!-- build breaks if this is set to Platform's value; becomes Win32 instead of x86 -->
+    <!-- Set this to the platforms you want to build (in a single build/package/publish). Will try to build all of them, but if compilers are missing for some of these platforms the platform will be skipped (with warnings emitted) -->
+    <!-- <BuildForRuntimeIdentifiers>win-x64;osx-x64;linux-x64</BuildForRuntimeIdentifiers> -->
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+
+    <Configuration>Release</Configuration> <!-- may be overridden to "debug" -->
+
+    <!-- Generic NuGet packaging stuff -->
+    <PackageId>HCE.DRP</PackageId>
+    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
+    <!-- <VersionPrefix>1.0.0</VersionPrefix> -->
+    <!-- <VersionPrefix Condition="'$(VersionPrefix)' == ''">1.0.0</VersionPrefix> -->
+
+    <!-- The directory where CMakeLists.txt is located. Mandatory property. -->
+    <CMakeListsDir>$(MSBuildThisFileDirectory)</CMakeListsDir>
+
+    <!-- Which arches to build for for a single RID, remove or delete if you want to build according to RID -->
+    <!-- <CMakeBuildAllArches>x86;x64;arm64</CMakeBuildAllArches> -->
+
+
+    <!-- If you want to force a build config, use the below property and uncomment it. By default Debug is used for debug, and MinSizeRel is used for release. -->
+    <!-- <CMakeBuildConfig>MinSizeRel</CMakeBuildConfig> -->
+
+    <USE_MSVC_WINE Condition="'$(USE_MSVC_WINE)' == ''">false</USE_MSVC_WINE>
+    <USE_MSVC_WINE Condition="'$(USE_MSVC_WINE)' == 'true'">true</USE_MSVC_WINE>
+    <CMakeExtraFlags Condition="$([MSBuild]::IsOSPlatform('Windows'))">--preset windows-base</CMakeExtraFlags>
+    <CMakeExtraFlags Condition="$([MSBuild]::IsOSPlatform('OSX'))">--preset macos-base</CMakeExtraFlags>
+    <CMakeExtraFlags Condition="$([MSBuild]::IsOSPlatform('Linux'))">--preset linux-base</CMakeExtraFlags>
+    <_HostIsOsxOrLinux>false</_HostIsOsxOrLinux>
+    <_HostIsOsxOrLinux Condition="$([MSBuild]::IsOSPlatform(OSX)) OR $([MSBuild]::IsOSPlatform(Linux))">true</_HostIsOsxOrLinux>
+    <CMakeExtraFlags Condition="$(_HostIsOsxOrLinux) AND $(USE_MSVC_WINE)">--preset msvc-wine</CMakeExtraFlags>
+    <CMakeExtraFlags Condition="'$(Configuration)' == 'Debug'">$([System.Text.RegularExpressions.Regex]::Replace('$(CmakeExtraFlags)','-base',-debug'))</CMakeExtraFlags>
+
+    <CMakeExtraFlags>$(CMakeExtraFlags) --presets-file "$(MSBuildThisFileDirectory)CMakePresets.json"</CMakeExtraFlags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="6.8.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- GitVersion -->
+  <Import Condition="Exists('$(PackageGitVersion_MsBuild)')" Project="$(PackageGitVersion_MsBuild)/tools/GitVersion.MsBuild.props" />
+  <PropertyGroup>
+    <UpdateAssemblyInfo>false</UpdateAssemblyInfo>
+    <GenerateGitVersionFiles>true</GenerateGitVersionFiles> <!-- Override for native project -->
+    <GenerateGitVersionInformation>false</GenerateGitVersionInformation> <!-- throws when project language is not C#, F#, or VB -->
+    <GitVersionTargetsBefore>$(GitVersionTargetsBefore);Build</GitVersionTargetsBefore>
+  </PropertyGroup>
+  <Import Condition="Exists('$(PackageGitVersion_MsBuild)')" Project="$(PackageGitVersion_MsBuild)/tools/GitVersion.MsBuild.targets" />
+
+  <PropertyGroup>
+    <PublishDependsOn>
+      SetGenerateManifests;
+      Build;
+      PublishOnly
+    </PublishDependsOn>
+  </PropertyGroup>
+
+  <!-- basic "publish" for target ZipPublishDir -->
+  <Target Name="_BasicPublish" BeforeTargets="ZipPublishDir">
+    <Error Condition="!Exists(@(None))" Text="No files to publish" />
+    <Copy SourceFiles="@(None)" DestinationFolder="$(PublishDir)" />
+  </Target>
+</Project>

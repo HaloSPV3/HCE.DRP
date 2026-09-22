@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "dependencies": {
+    "native,Version=v0.0": {
+      "GitVersion.MsBuild": {
+        "type": "Direct",
+        "requested": "[6.8.2, )",
+        "resolved": "6.8.2",
+        "contentHash": "eTd8jUiogUXpVssFyDWWdMrPr5Cdc57tWaQ3Cv/eMIhnumOHZhDkc/wcy8hYU8aH7NS4VT2w/pHjVITDSTXMGw=="
+      }
+    },
+    "native,Version=v0.0/win-x86": {}
+  }
+}

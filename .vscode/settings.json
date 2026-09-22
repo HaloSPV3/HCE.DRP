@@ -56,18 +56,9 @@
     "**/.pnp.*": true
   },
   "C_Cpp.intelliSenseCacheSize": 0,
-  "vcpkg.target.useManifest": false,
-  "cmake.configureArgs": [
-    "-DVCPKG_APPLOCAL_DEPS=ON",
-    "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
-    "-DVCPKG_MANIFEST_MODE=OFF",
-    "-DVCPKG_TARGET_TRIPLET=x64-linux"
-  ],
   "vcpkg.general.enable": true,
-  "vcpkg.target.useStaticLib": false,
   "vcpkg.target.installDependencies": true,
   "vcpkg.target.preferSystemLibs": false,
-  "cmake.buildDirectory": "${workspaceFolder}/src/build",
-  "vcpkg.target.defaultTriplet": "x64-linux",
-  "vcpkg.target.hostTriplet": "-linux"
+  "vcpkg.target.useManifest": true,
+  "vcpkg.target.useStaticLib": false
 }

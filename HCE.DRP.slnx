@@ -1,3 +1,9 @@
-<Solution>
-  <Project Path="src/DRP.vcxproj" />
+<Solution xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://github.com/microsoft/vs-solutionpersistence/raw/refs/heads/main/src/Microsoft.VisualStudio.SolutionPersistence/Serializer/Xml/Slnx.xsd">
+  <Project Path="src/DRP.nativeproj" Type="VC" />
+  <Configurations>
+    <BuildType Name="Release" />
+    <BuildType Name="Debug" />
+    <Platform Name="x86" />
+  </Configurations>
 </Solution>
