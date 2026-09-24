@@ -35,4 +35,4 @@ if(NOT CMAKE_HOST_WIN32 AND NOT USE_MSVC_WINE)
   endif()
 endif()
 
-include(cmake/idesupport.cmake)
+include(cmake/MSBuildCMake.idesupport.cmake)
