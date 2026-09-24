@@ -53,5 +53,5 @@ Presence:
 | maps       | images representing each map
 | difficulty | images representing each singleplayer difficulty
 
-Images have been generously provided by Arecaidian Fox, giraffe, sbdJazz
-and the rest of the SPV3 crew.
+Images have been generously provided by Lilac (Arecaidian Fox), giraffe,
+sbdJazz, and the rest of the SPV3 crew.
