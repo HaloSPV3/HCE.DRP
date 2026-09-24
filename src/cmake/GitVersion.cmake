@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.19.0)
 
-execute_process(COMMAND dotnet tool restore)
+execute_process(COMMAND dotnet tool restore OUTPUT_QUIET)
 execute_process(COMMAND dotnet gitversion OUTPUT_VARIABLE GITVERSION_JSON)
 message(VERBOSE ${GITVERSION_JSON})
 
