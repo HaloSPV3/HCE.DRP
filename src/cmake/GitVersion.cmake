@@ -1,3 +1,6 @@
+# Copyright 2026 Noah Sherwin
+# SPDX-License-Identifier: GPL-3.0-only
+
 cmake_minimum_required(VERSION 3.19.0)
 
 execute_process(COMMAND dotnet tool restore)
