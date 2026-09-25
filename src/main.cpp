@@ -45,6 +45,18 @@ const maps SP_MAPS[] = {
 	{ "spv3_engine_spartan",		"Engine Room (UNSC/Covenant)" },
 	{ "spv3_engine_flood",			"Engine Room (UNSC/Flood)" },
 	{ "spv3_engine_elite",			"Engine Room (Covenant/Flood)" },
+
+	{ "spv3_covieship_flood",		"Hangar (UNSC/Flood)" },
+	{ "spv3_covieship_spartan",	"Hangar (UNSC/Covenant)" },
+	{ "spv3_covieship_elite",		"Hangar (Covenant/Flood)" },
+
+	{ "spv3_lobby_spartan",			"Lobby (UNSC/Covenant)" },
+	{ "spv3_lobby_flood",				"Lobby (UNSC/Flood)" },
+	{ "spv3_lobby_elite",				"Lobby (Covenant/Flood)" },
+
+	{ "spv3_swamptower_spartan","Swamp (UNSC/Covenant)" },
+	{ "spv3_swamptower_flood",	"Swamp (UNSC/Flood)" },
+	{ "spv3_swamptower_elite",	"Swamp (Covenant/Flood)" }
 };
 // clang-format on
 
