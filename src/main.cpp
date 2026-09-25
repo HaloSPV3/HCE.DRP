@@ -46,6 +46,10 @@ const maps SP_MAPS[] = {
 	{ "spv3_engine_flood",			"Engine Room (UNSC/Flood)" },
 	{ "spv3_engine_elite",			"Engine Room (Covenant/Flood)" },
 
+  { "spv3_bridge_flood",			"Bridge (UNSC/Flood)" },
+  { "spv3_bridge_spartan",		"Bridge (UNSC/Covenant)" },
+  { "spv3_bridge_elite",			"Bridge (Covenant/Flood)" },
+
 	{ "spv3_covieship_flood",		"Hangar (UNSC/Flood)" },
 	{ "spv3_covieship_spartan",	"Hangar (UNSC/Covenant)" },
 	{ "spv3_covieship_elite",		"Hangar (Covenant/Flood)" },
