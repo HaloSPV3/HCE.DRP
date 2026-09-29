@@ -37,7 +37,7 @@
     <_HostIsOsxOrLinux>false</_HostIsOsxOrLinux>
     <_HostIsOsxOrLinux Condition="$([MSBuild]::IsOSPlatform(OSX)) OR $([MSBuild]::IsOSPlatform(Linux))">true</_HostIsOsxOrLinux>
     <CMakeExtraFlags Condition="$(_HostIsOsxOrLinux) AND $(USE_MSVC_WINE)">--preset msvc-wine</CMakeExtraFlags>
-    <CMakeExtraFlags Condition="'$(Configuration)' == 'Debug'">$([System.Text.RegularExpressions.Regex]::Replace('$(CmakeExtraFlags)','-base',-debug'))</CMakeExtraFlags>
+    <CMakeExtraFlags Condition="'$(Configuration)' == 'Debug'">$([System.Text.RegularExpressions.Regex]::Replace('$(CmakeExtraFlags)', '-base', '-debug'))</CMakeExtraFlags>
 
     <CMakeExtraFlags>$(CMakeExtraFlags) --presets-file "$(MSBuildThisFileDirectory)CMakePresets.json"</CMakeExtraFlags>
   </PropertyGroup>
