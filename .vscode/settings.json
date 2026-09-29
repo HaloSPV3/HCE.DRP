@@ -43,10 +43,18 @@
   "eslint.format.enable": true,
   "cSpell.words": [
     "Arecaidian",
+    "CHAINLOAD",
     "COMDAT",
+    "CROSSCOMPILING",
     "ctest",
+    "endfunction",
     "halospv",
-    "msvc"
+    "msvc",
+    "libgcc",
+    "libstdc",
+    "msvc",
+    "RANLIB",
+    "STREQUAL"
   ],
   "eslint.nodePath": ".yarn/sdks",
   "js/ts.tsdk.path": ".yarn/sdks/typescript/lib",
