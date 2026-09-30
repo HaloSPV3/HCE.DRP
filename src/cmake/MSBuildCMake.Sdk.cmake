@@ -9,7 +9,7 @@ set(BUILD_PLATFORM_TARGET "${BUILD_PLATFORM_TARGET}" CACHE STRING "Current platf
 set(BUILD_RID "${BUILD_RID}" CACHE STRING "Current RID being built, do not rely on this for any important logic! Does not support multi-arch builds (set from MSBuild)")
 set(NATIVE_OUTPUT_FOLDER "${NATIVE_OUTPUT_FOLDER}" CACHE STRING "The place where extra build output should be placed (set from MSBuild)")
 
-# NATIVE_OUTPUT_FOLDER may be set my cmake presets
+# NATIVE_OUTPUT_FOLDER may be set by cmake presets
 if(NOT NATIVE_OUTPUT_FOLDER)
 endif()
 
