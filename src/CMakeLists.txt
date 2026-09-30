@@ -139,26 +139,6 @@ find_library(DISCORD_RPC_LIB discord-rpc REQUIRED)
 target_link_libraries(DRP PRIVATE "${DISCORD_RPC_LIB}")
 
 # ##############
-# ## CPack
-# ##############
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
-
-# ##############
-# ## Output
-# ##############
-set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/../artifacts/")
-install(TARGETS DRP
-  RUNTIME DESTINATION "${CMAKE_BINARY_DIR}/../artifacts/"
-)
-
-# ##############
-# # CTest
-# ##############
-# include(CTest)
-# enable_testing()
-
-# ##############
 # ## Docs, links, references
 # ##############
 # https://github.com/OpenSteamClient/MSBuildCMake/blob/master/NativeCompilationTask.cs
