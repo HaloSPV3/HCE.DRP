@@ -48,6 +48,8 @@
     "CROSSCOMPILING",
     "ctest",
     "endfunction",
+    "GITVERSION",
+    "halocepresence",
     "halospv",
     "msvc",
     "libgcc",
