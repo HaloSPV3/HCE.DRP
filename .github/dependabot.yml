@@ -7,21 +7,25 @@ version: 2
 updates:
   - package-ecosystem: "gitsubmodule" # See documentation for possible values
     directory: "/" # Location of package manifests
+    target-branch: develop
     schedule:
       interval: "daily"
 
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: develop
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
     directory: "/"
+    target-branch: develop
     schedule:
       interval: "daily"
 
   - package-ecosystem: "nuget"
-    directory: "src"
+    directory: "/"
+    target-branch: develop
     schedule:
       interval: "daily"
 
