@@ -11,11 +11,9 @@ set(NATIVE_OUTPUT_FOLDER "${NATIVE_OUTPUT_FOLDER}" CACHE STRING "The place where
 
 # NATIVE_OUTPUT_FOLDER may be set by cmake presets
 if(NOT NATIVE_OUTPUT_FOLDER)
+  message(WARNING "NATIVE_OUTPUT_FOLDER is undefined")
 endif()
 
-# why did I need this?
-# find_path(_artifacts "artifacts" REQUIRED PATHS "../")
-# message(WARNING _artifacts: ${_artifacts})
 if(NOT CMAKE_HOST_WIN32 AND NOT USE_MSVC_WINE)
   if(NOT "${TARGET}" STREQUAL "i686-w64-mingw32")
     if(NOT NUGET_PACKAGES)
