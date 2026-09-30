@@ -22,6 +22,10 @@ updates:
     target-branch: develop
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "@types/node"
+        # For Node types, ignore any major versions
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "nuget"
     directory: "/"
