@@ -146,6 +146,7 @@
     {
       "name": "msvc-wine",
       "description": "Use the MSVC toolset via Wine",
+      "generator": "Ninja",
       "inherits": "windows-base",
       "cacheVariables": {
         "USE_MSVC_WINE": true,
