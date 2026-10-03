@@ -3,17 +3,17 @@ name: ci
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
     paths:
-    - '!**/*.md'
-    - '!**/*.txt'
+      - "!**/*.md"
+      - "!**/*.txt"
   workflow_call:
 
   pull_request:
     types:
-    - opened
-    - reopened
-    - ready_for_review
+      - opened
+      - reopened
+      - ready_for_review
 
 jobs:
   ################
@@ -29,16 +29,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        buildConfig: [ "Release", "Debug" ]
+        buildConfig: ["Release", "Debug"]
 
     steps:
-    - uses: actions/checkout@v7
-      with:
-        submodules: 'recursive'
-        fetch-depth: 0
+      - uses: actions/checkout@v7
+        with:
+          submodules: "recursive"
+          fetch-depth: 0
 
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v3
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v3
 
-    - name: Build
-      run: msbuild src /p:Configuration=${{ matrix.buildConfig }}
+      - name: Build
+        run: msbuild src /p:Configuration=${{ matrix.buildConfig }}
