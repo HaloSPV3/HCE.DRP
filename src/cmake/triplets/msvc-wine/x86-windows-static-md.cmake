@@ -9,8 +9,8 @@ set(VCPKG_CMAKE_SYSTEM_NAME Windows)
 set(ENV{PATH} "${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}:$ENV{PATH}")
 set(ENV{CC} ${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}/cl)
 set(ENV{CXX} ${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}/cl)
-set(VCPKG_LOAD_VCVARS_ENV ON) # Setting VCPKG_CHAINLOAD_TOOLCHAIN_FILE deactivates automatic vcvars setup so reenable it!
-
+# ~~Setting VCPKG_CHAINLOAD_TOOLCHAIN_FILE deactivates automatic vcvars setup so reenable it!~~
+# set(VCPKG_LOAD_VCVARS_ENV ON) # VCVars setup will throw an error when using msvc-wine
 
 if(NOT VCPKG_ROOT_DIR)
   set(VCPKG_ROOT_DIR $ENV{VCPKG_ROOT})
