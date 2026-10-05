@@ -4,7 +4,13 @@ cmake_minimum_required(VERSION 3.10)
 
 set(VCPKG_TARGET_ARCHITECTURE x86)
 set(VCPKG_CRT_LINKAGE dynamic)
-set(VCPKG_LIBRARY_LINKAGE static) # set(VCPKG_LIBRARY_LINKAGE dynamic)
+set(VCPKG_LIBRARY_LINKAGE static)
+set(VCPKG_CMAKE_SYSTEM_NAME Windows)
+set(ENV{PATH} "${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}:$ENV{PATH}")
+set(ENV{CC} ${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}/cl)
+set(ENV{CXX} ${MSVC_ROOT}/bin/${VCPKG_TARGET_ARCHITECTURE}/cl)
+set(VCPKG_LOAD_VCVARS_ENV ON) # Setting VCPKG_CHAINLOAD_TOOLCHAIN_FILE deactivates automatic vcvars setup so reenable it!
+
 
 if(NOT VCPKG_ROOT_DIR)
   set(VCPKG_ROOT_DIR $ENV{VCPKG_ROOT})
@@ -24,7 +30,3 @@ if(NOT MSVC_ROOT)
   endif()
 endif()
 
-set(ENV{CC} cl.exe)
-set(ENV{CXX} cl.exe)
-set(ENV{PATH} "${MSVC_ROOT}/bin/x86:$ENV{PATH}")
-set(VCPKG_LOAD_VCVARS_ENV ON) # Setting VCPKG_CHAINLOAD_TOOLCHAIN_FILE deactivates automatic vcvars setup so reenable it!
