@@ -1,5 +1,6 @@
 # Copyright 2026 Noah Sherwin.
 # SPDX-License-Identifier: GPL-3.0-only
+cmake_minimum_required(VERSION 3.10)
 
 set(VCPKG_TARGET_ARCHITECTURE x86)
 set(VCPKG_CRT_LINKAGE dynamic)

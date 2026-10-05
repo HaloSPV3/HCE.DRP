@@ -1,5 +1,6 @@
 # Copyright 2026 Noah Sherwin.
 # SPDX-License-Identifier: GPL-3.0-only
+cmake_minimum_required(VERSION 3.25)
 
 # TODO: change incremented ENV variables to a single Key-Value list ENV variable e.g. "Key0=Value0:Key1=Value1"
 
