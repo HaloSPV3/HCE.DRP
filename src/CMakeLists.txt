@@ -34,12 +34,13 @@ include(cmake/VersionInfo.cmake)
 # we don't want it in the release
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY)
 
-message(VERBOSE
-  "  vars:
+if(false)
+  message(WARNING "  vars:
   CMAKE_TOOLCHAIN_FILE: ${CMAKE_TOOLCHAIN_FILE}
   VCPKG_CHAINLOAD_TOOLCHAIN_FILE: ${VCPKG_CHAINLOAD_TOOLCHAIN_FILE}
   ENV{CMAKE_TOOLCHAIN_FILE_0}: $ENV{CMAKE_TOOLCHAIN_FILE_0}
   ENV{CMAKE_TOOLCHAIN_FILE_1}: $ENV{CMAKE_TOOLCHAIN_FILE_1}")
+endif()
 
 # ##############
 # ## HCE.DRP
