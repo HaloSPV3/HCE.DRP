@@ -150,7 +150,7 @@
       "inherits": "windows-base",
       "cacheVariables": {
         "USE_MSVC_WINE": true,
-        "VCPKG_OVERLAY_TRIPLETS": "./cmake/triplets/msvc-wine"
+        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake/triplets/msvc-wine"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
