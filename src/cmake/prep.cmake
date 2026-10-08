@@ -81,7 +81,6 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
 
   # https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library?view=msvc-170
   # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD") # handled by target triplet...maybe
-
 else()
   # https://github.com/microsoft/vcpkg/blob/master/triplets/community/x86-mingw-static-release.cmake
   # vcpkg/triplets/community/x86-mingw-static-release.cmake
