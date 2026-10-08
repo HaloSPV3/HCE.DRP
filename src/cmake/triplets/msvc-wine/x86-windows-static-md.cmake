@@ -2,16 +2,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 cmake_minimum_required(VERSION 3.10)
 
-get_filename_component(SOURCE_CMAKE_TRIPLETS_MSVC_WINE_DIR "${CMAKE_CURRENT_LIST_DIR}" DIRECTORY)
-get_filename_component(SOURCE_CMAKE_TRIPLETS_DIR "${SOURCE_CMAKE_TRIPLETS_MSVC_WINE_DIR}" DIRECTORY)
-get_filename_component(SOURCE_CMAKE_DIR "${SOURCE_CMAKE_TRIPLETS_DIR}" DIRECTORY)
-
-if(NOT EXISTS "${SOURCE_CMAKE_DIR}/cmake/toolchain_loader_chain.cmake")
-  message(FATAL_ERROR "${SOURCE_CMAKE_DIR}/cmake/toolchain_loader_chain.cmake does not exist!")
-endif()
-
-include(${SOURCE_CMAKE_DIR}/cmake/toolchain_loader_chain.cmake)
-
 if(NOT VCPKG_ROOT)
   set(VCPKG_ROOT $ENV{VCPKG_ROOT})
 endif()
