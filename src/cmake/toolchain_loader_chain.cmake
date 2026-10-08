@@ -8,19 +8,12 @@ cmake_minimum_required(VERSION 3.25)
 # Chain-load more than two toolchain files
 # Useful when you have vcpkg and a toolchain file, but need to override a toolchain variable
 function(chain toolchain_file)
-  set(isToolchainAlreadyChained false)
-  _isToolchainAlreadyChained(toolchain_file isToolchainAlreadyChained)
-
   if("$ENV{CMAKE_TOOLCHAIN_FILE_0}" STREQUAL "${toolchain_file}"
     OR "$ENV{CMAKE_TOOLCHAIN_FILE_1}" STREQUAL "${toolchain_file}"
     OR "$ENV{CMAKE_TOOLCHAIN_FILE_2}" STREQUAL "${toolchain_file}"
     OR "$ENV{CMAKE_TOOLCHAIN_FILE_3}" STREQUAL "${toolchain_file}"
     OR "$ENV{CMAKE_TOOLCHAIN_FILE_4}" STREQUAL "${toolchain_file}")
-    set(isToolchainAlreadyChained true)
-  endif()
-
-  if(isToolchainAlreadyChained)
-    return() # noop
+    return() # noop; toolchain already chained
   endif()
 
   # todo: investigate if PARENT_SCOPE parameter allows for non-ENV vars to propagate
@@ -45,8 +38,4 @@ function(chain toolchain_file)
   ENV{CMAKE_TOOLCHAIN_FILE_2}: $ENV{CMAKE_TOOLCHAIN_FILE_2}
   ENV{CMAKE_TOOLCHAIN_FILE_3}: $ENV{CMAKE_TOOLCHAIN_FILE_3}
   ENV{CMAKE_TOOLCHAIN_FILE_4}: $ENV{CMAKE_TOOLCHAIN_FILE_4}")
-endfunction()
-
-function(_isToolchainAlreadyChained toolchain_file RETURN_VALUE)
-  return(PROPAGATE RETURN_VALUE)
 endfunction()
