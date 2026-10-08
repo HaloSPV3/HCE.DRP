@@ -52,6 +52,12 @@ endforeach()
 # Windows 7; MSBuildCMake.SDK's MinGW32.cmake toolchain file sets this to Windows 10; we don't want that!
 set(CMAKE_SYSTEM_VERSION 6.1)
 
+# No matter what I try, VCPKG_TARGET_ARCHITECTURE is becoming undefined before it is read and converted to CMAKE_SYSTEM_PROCESSOR
+# set(VCPKG_TARGET_ARCHITECTURE "x86"), set(CACHE{VCPKG_TARGET_ARCHITECTURE} VALUE "x86" FORCE), et cetera
+# So, we try overriding CMAKE_SYSTEM_PROCESSOR here, instead.
+if(NOT DEFINED CMAKE_SYSTEM_PROCESSOR)
+  set(CACHE{CMAKE_SYSTEM_PROCESSOR} VALUE "x86")
+endif()
 # CMAKE_C_COMPILER, CMAKE_CXX_COMPILER, and CMAKE_RC_COMPILER are set by the triplet
 set(CMAKE_C_FLAGS_INIT "-static-libgcc")
 set(CMAKE_CXX_FLAGS_INIT "-static-libgcc -static-libstdc++")
