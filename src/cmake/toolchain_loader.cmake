@@ -58,6 +58,11 @@ set(CMAKE_SYSTEM_VERSION 6.1)
 if(NOT DEFINED CMAKE_SYSTEM_PROCESSOR)
   set(CMAKE_SYSTEM_PROCESSOR x86)
 endif()
+
+if(NOT DEFINED CMAKE_C_COMPILER)
+  message(FATAL_ERROR "Why is CMAKE_C_COMPILER undefined?")
+endif()
+
 # CMAKE_C_COMPILER, CMAKE_CXX_COMPILER, and CMAKE_RC_COMPILER are set by the triplet
 set(CMAKE_C_FLAGS_INIT "-static-libgcc")
 set(CMAKE_CXX_FLAGS_INIT "-static-libgcc -static-libstdc++")
