@@ -76,6 +76,9 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
   endif()
 
   chain("${VCPKG_ROOT}/scripts/toolchains/windows.cmake")
+  if(USE_MSVC_WINE)
+    chain(${CMAKE_SOURCE_DIR}/cmake/toolchains/msvc-wine-x86-nt6.1.cmake)
+  endif()
 
   set(CACHE{VCPKG_PLATFORM_TOOLSET} TYPE STRING VALUE v141)
 
