@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 20)
 # ########
 include(cmake/toolchain_loader_chain.cmake)
 include(cmake/MSBuildCMake.Sdk.cmake)
-include(cmake/toolchain.cmake)
+include(cmake/prep.cmake)
 include(cmake/GitVersion.cmake) # Generate GitVersion variables
 include(cmake/VersionInfo.cmake)
 

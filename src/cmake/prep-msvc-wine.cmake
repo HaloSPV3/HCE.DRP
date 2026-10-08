@@ -3,19 +3,18 @@
 
 # ### NOTES
 # - if link.exe hangs, try triplet x86-windows-lld
-
-if(NOT USE_MSVC_WINE AND $ENV{USE_MSVC_WINE})
-  set(USE_MSVC_WINE $ENV{USE_MSVC_WINE})
+if("${USE_MSVC_WINE}" STREQUAL "" AND NOT "$ENV{USE_MSVC_WINE}" STREQUAL "")
+  set(CACHE{USE_MSVC_WINE} VALUE "$ENV{USE_MSVC_WINE}")
 endif()
 
 if(USE_MSVC_WINE)
   # find MSVC_ROOT
   if(NOT MSVC_ROOT)
     if(IS_DIRECTORY $ENV{MSVC_ROOT})
-      set(MSVC_ROOT $ENV{MSVC_ROOT})
+      set(CACHE{MSVC_ROOT} TYPE FILEPATH VALUE "$ENV{MSVC_ROOT}")
     endif()
   elseif(IS_DIRECTORY "/opt/msvc")
-    set(MSVC_ROOT "/opt/msvc")
+    set(CACHE{MSVC_ROOT} TYPE FILEPATH VALUE "/opt/msvc")
   else()
     message(FATAL_ERROR "MSVC_ROOT (e.g. /opt/msvc) not found!")
   endif() #
@@ -36,12 +35,13 @@ if(USE_MSVC_WINE)
   # ENV{CC}   (sometimes)
   # ENV{CXX}  (sometimes)
   # ENV{PATH} (sometimes)
-  if(NOT "${VCPKG_OVERLAY_TRIPLETS}" STREQUAL "${CMAKE_SOURCE_DIR}/cmake/triplets")
+  if(NOT "${VCPKG_OVERLAY_TRIPLETS}" STREQUAL "${CMAKE_SOURCE_DIR}/cmake/triplets/msvc-wine" AND NOT "${VCPKG_OVERLAY_TRIPLETS}" STREQUAL "./cmake/triplets/msvc-wine")
     message(WARNING "VCPKG_OVERLAY_TRIPLETS is being changed from \"${VCPKG_OVERLAY_TRIPLETS}\" to \"${CMAKE_SOURCE_DIR}/cmake/triplets/msvc-wine\".")
   endif()
 
-  set(VCPKG_OVERLAY_TRIPLETS "${CMAKE_SOURCE_DIR}/cmake/triplets/msvc-wine")
+  set(CACHE{VCPKG_OVERLAY_TRIPLETS} TYPE FILEPATH VALUE "${CMAKE_SOURCE_DIR}/cmake/triplets/msvc-wine")
 
+  # set(VCPKG_TARGET_TRIPLET x86-windows-static-md) # is set in toolchain.cake
 else()
   message(Verbose "Not using MSVC-Wine")
 endif()

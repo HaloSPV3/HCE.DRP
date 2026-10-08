@@ -13,7 +13,7 @@ set(CMAKE_GET_RUNTIME_DEPENDENCIES_PLATFORM "windows+pe")
 # ## vcpkg
 # ##############
 if(NOT VCPKG_ROOT)
-  set(VCPKG_ROOT $ENV{VCPKG_ROOT})
+  set(CACHE{VCPKG_ROOT} TYPE FILEPATH VALUE "$ENV{VCPKG_ROOT}")
 endif()
 
 if(NOT IS_DIRECTORY ${VCPKG_ROOT})
@@ -22,20 +22,25 @@ endif()
 
 set(USE_MSVC_WINE ${USE_MSVC_WINE})
 if(NOT USE_MSVC_WINE AND NOT "$ENV{USE_MSVC_WINE}" STREQUAL "")
-  set(USE_MSVC_WINE "$ENV{USE_MSVC_WINE}")
+  set(CACHE{USE_MSVC_WINE} TYPE BOOL VALUE "$ENV{USE_MSVC_WINE}")
 endif()
 
 if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
+  set(CACHE{VCPKG_CRT_LINKAGE} VALUE "dynamic")
   if(USE_MSVC_WINE)
-    include(${CMAKE_SOURCE_DIR}/cmake/msvc-wine.cmake)
+    include(${CMAKE_SOURCE_DIR}/cmake/prep-msvc-wine.cmake)
   endif()
 
-  # set(VCPKG_CMAKE_SYSTEM_NAME Windows)
-  set(VCPKG_TARGET_TRIPLET x86-windows-static-md)
-  set(VCPKG_PLATFORM_TOOLSET v141)
+  if(NOT "${VCPKG_TARGET_TRIPLET}" STREQUAL "x86-windows-static-md")
+    message(FATAL_ERROR "MSVC must used with triplet x86-windows-static-md")
+  endif()
+
+  chain("${VCPKG_ROOT}/scripts/toolchains/windows.cmake")
+
+  set(CACHE{VCPKG_PLATFORM_TOOLSET} TYPE STRING VALUE v141)
 
   # https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library?view=msvc-170
-  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
+  # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD") # handled by target triplet...maybe
 
 else()
   # https://github.com/microsoft/vcpkg/blob/master/triplets/community/x86-mingw-static-release.cmake
@@ -48,17 +53,19 @@ endif()
 
 set(VCPKG_LIBRARY_LINKAGE static)
 set(VCPKG_MANIFEST_MODE true)
+set(VCPKG_MANIFEST_INSTALL true)
 
 string(TOLOWER "${CMAKE_TOOLCHAIN_FILE}" cmake_toolchain_file)
-string(REGEX MATCH "[\\/]vcpkg.cmake" IsVcpkgCMake "${cmake_toolchain_file}")
 
 # if(VCPKG_CHAINLOAD_TOOLCHAIN_FILE)
 
 # if CMAKE_TOOLCHAIN_FILE is defined and not vcpkg, retain it as
 # CMAKE_TOOLCHAIN_FILE_0. Then, assign vcpkg as the main toolchain.
-if(NOT IsVcpkgCMake)
-  if(NOT "${CMAKE_TOOLCHAIN_FILE}" STREQUAL "")
-    chain(${CMAKE_TOOLCHAIN_FILE})
+if(NOT "${cmake_toolchain_file}" MATCHES "[\\/]vcpkg.cmake")
+  # if USE_MSVC_WINE, do not chainload MingW32.cmake
+  if(NOT (USE_MSVC_WINE AND "${cmake_toolchain_file}" MATCHES "[\\/]MingW32.cmake"))
+    message(WARNING "USE_MSVC_WINE: ${USE_MSVC_WINE}")
+    chain("${CMAKE_TOOLCHAIN_FILE}")
   endif()
 
   set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
