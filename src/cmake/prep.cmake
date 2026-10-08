@@ -41,6 +41,9 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
       message(FATAL_ERROR "MSVC_ROOT (e.g. /opt/msvc) not found!")
     endif() #
 
+    set(BIN ${MSVC_ROOT}/bin/x86)
+    include(${CMAKE_SOURCE_DIR}/cmake/msvcenv-native.cmake)
+
     # allow vcpkg to override windows triplets e.g.
     # /opt/msvc/cmake/vcpkg_triplets/x86-windows.cmake
     # /opt/msvc/cmake/vcpkg_triplets/x86-windows-clang.cmake
@@ -66,7 +69,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
 
     set(CACHE{VCPKG_OVERLAY_TRIPLETS} TYPE FILEPATH VALUE "${cmake_triplets_msvc_wine}")
 
-    set(VCPKG_TARGET_TRIPLET x86-windows-static-md)
+    set(CACHE{VCPKG_TARGET_TRIPLET} VALUE x86-windows-static-md)
   else()
     message(STATUS "Building win-x86 (x86) natives with MSVC")
   endif()
