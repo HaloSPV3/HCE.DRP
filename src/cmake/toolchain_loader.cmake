@@ -63,10 +63,12 @@ if(NOT DEFINED CMAKE_C_COMPILER)
   message(FATAL_ERROR "Why is CMAKE_C_COMPILER undefined?")
 endif()
 
-# CMAKE_C_COMPILER, CMAKE_CXX_COMPILER, and CMAKE_RC_COMPILER are set by the triplet
-set(CMAKE_C_FLAGS_INIT "-static-libgcc")
-set(CMAKE_CXX_FLAGS_INIT "-static-libgcc -static-libstdc++")
-set(CMAKE_EXE_LINKER_FLAGS_INIT "-static-libgcc -static-libstdc++")
+if("${TARGET}" MATCHES mingw32)
+  # CMAKE_C_COMPILER, CMAKE_CXX_COMPILER, and CMAKE_RC_COMPILER are set by the triplet
+  set(CMAKE_C_FLAGS_INIT "-static-libgcc -static")
+  set(CMAKE_CXX_FLAGS_INIT "-static-libgcc -static-libstdc++ -static")
+  set(CMAKE_EXE_LINKER_FLAGS_INIT "-static-libgcc -static-libstdc++ -static")
+endif()
 
 # some triplets set this to 'dynamic'; we need 'static' lib-linking
 set(VCPKG_LIBRARY_LINKAGE static)
