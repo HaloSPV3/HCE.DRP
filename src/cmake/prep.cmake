@@ -21,14 +21,54 @@ if(NOT IS_DIRECTORY ${VCPKG_ROOT})
 endif()
 
 set(USE_MSVC_WINE ${USE_MSVC_WINE})
-if(NOT USE_MSVC_WINE AND NOT "$ENV{USE_MSVC_WINE}" STREQUAL "")
+if("${USE_MSVC_WINE}" STREQUAL "" AND NOT "$ENV{USE_MSVC_WINE}" STREQUAL "")
   set(CACHE{USE_MSVC_WINE} TYPE BOOL VALUE "$ENV{USE_MSVC_WINE}")
 endif()
 
 if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
   set(CACHE{VCPKG_CRT_LINKAGE} VALUE "dynamic")
   if(USE_MSVC_WINE)
-    include(${CMAKE_SOURCE_DIR}/cmake/prep-msvc-wine.cmake)
+    # ### NOTES
+    # - if link.exe hangs, try triplet x86-windows-lld
+    message(STATUS "Building win-x86 (x86) natives with MSVC-wine")
+
+    # find MSVC_ROOT
+    if(NOT (IS_DIRECTORY "${MSVC_ROOT}") AND IS_DIRECTORY $ENV{MSVC_ROOT})
+      set(CACHE{MSVC_ROOT} TYPE FILEPATH VALUE "$ENV{MSVC_ROOT}")
+    elseif(IS_DIRECTORY "/opt/msvc")
+      set(CACHE{MSVC_ROOT} TYPE FILEPATH VALUE "/opt/msvc")
+    else()
+      message(FATAL_ERROR "MSVC_ROOT (e.g. /opt/msvc) not found!")
+    endif() #
+
+    # allow vcpkg to override windows triplets e.g.
+    # /opt/msvc/cmake/vcpkg_triplets/x86-windows.cmake
+    # /opt/msvc/cmake/vcpkg_triplets/x86-windows-clang.cmake
+    # /opt/msvc/cmake/vcpkg_triplets/x86-windows-lld.cmake
+    #
+    # these may override the following variables:
+    # VCPKG_TARGET_ARCHITECTURE
+    # VCPKG_CRT_LINKAGE
+    # VCPKG_LIBRARY_LINKAGE
+    # VCPKG_ENV_PASSTHROUGH
+    # VCPKG_ROOT_DIR (if falsey)
+    # VCPKG_CHAINLOAD_TOOLCHAIN_FILE
+    # VCPKG_LOAD_VCVARS_ENV (when VCPKG_CHAINLOAD_TOOLCHAIN_FILE is defined)
+    # ENV{CC}   (sometimes)
+    # ENV{CXX}  (sometimes)
+    # ENV{PATH} (sometimes)
+
+    set(cmake_triplets_msvc_wine "${CMAKE_SOURCE_DIR}/cmake/triplets/msvc-wine")
+
+    if(NOT "${VCPKG_OVERLAY_TRIPLETS}" STREQUAL "${cmake_triplets_msvc_wine}" AND NOT "${VCPKG_OVERLAY_TRIPLETS}" STREQUAL "./cmake/triplets/msvc-wine")
+      message(WARNING "VCPKG_OVERLAY_TRIPLETS is being changed from \"${VCPKG_OVERLAY_TRIPLETS}\" to \"${cmake_triplets_msvc_wine}\".")
+    endif()
+
+    set(CACHE{VCPKG_OVERLAY_TRIPLETS} TYPE FILEPATH VALUE "${cmake_triplets_msvc_wine}")
+
+    set(VCPKG_TARGET_TRIPLET x86-windows-static-md)
+  else()
+    message(STATUS "Building win-x86 (x86) natives with MSVC")
   endif()
 
   if(NOT "${VCPKG_TARGET_TRIPLET}" STREQUAL "x86-windows-static-md")
