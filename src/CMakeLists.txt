@@ -83,7 +83,7 @@ if(NOT CMAKE_SYSTEM_VERSION STREQUAL "6.1")
   message(FATAL_ERROR "Target Windows version must be 6.1 (Windows 7). It is ${CMAKE_SYSTEM_VERSION}")
 endif()
 
-if(NOT(CMAKE_SYSTEM_PROCESSOR STREQUAL i686 OR CMAKE_SYSTEM_PROCESSOR STREQUAL x86))
+if(NOT (CMAKE_SYSTEM_PROCESSOR STREQUAL i686 OR CMAKE_SYSTEM_PROCESSOR STREQUAL x86))
   message(FATAL_ERROR "Target CPU Architecture was changed from i686(x86)! This is an i686-only project! It is currently ${CMAKE_SYSTEM_PROCESSOR}")
 endif()
 
