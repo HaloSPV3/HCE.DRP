@@ -12,11 +12,11 @@ endif()
 
 include(${SOURCE_CMAKE_DIR}/cmake/toolchain_loader_chain.cmake)
 
-if(NOT VCPKG_ROOT_DIR)
-  set(VCPKG_ROOT_DIR $ENV{VCPKG_ROOT})
+if(NOT VCPKG_ROOT)
+  set(VCPKG_ROOT $ENV{VCPKG_ROOT})
 endif()
 # TODO: chain call does not work; use list, CACHE variable, or ENV variables
-chain(${VCPKG_ROOT_DIR}/scripts/toolchains/windows.cmake)
+# chain("${VCPKG_ROOT}/scripts/toolchains/windows.cmake") # chained in prep.cmake, instead
 
 if("${MSVC_ROOT}" STREQUAL "" OR NOT MSVC_ROOT)
   set(MSVC_ROOT "$ENV{MSVC_ROOT}")
