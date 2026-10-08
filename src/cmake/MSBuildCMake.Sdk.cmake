@@ -3,7 +3,7 @@
 
 set(OSXCROSS_TARGET_DIR "${OSXCROSS_TARGET_DIR}" CACHE STRING "OSXCross compiler target path (set from MSBuild)")
 set(OSXCROSS_TARGET "${OSXCROSS_TARGET}" CACHE STRING "OSXCross target (set from MSBuild)")
-set(BUILD_ARCH "${BUILD_ARCH}" CACHE STRING "Curret arch being built (set from MSBuild)")
+set(BUILD_ARCH "${BUILD_ARCH}" CACHE STRING "Current arch being built (set from MSBuild)")
 set(CustomBuildTaskRoot "${CustomBuildTaskRoot}" CACHE STRING "Path to CustomBuildTask (set from MSBuild)")
 set(BUILD_PLATFORM_TARGET "${BUILD_PLATFORM_TARGET}" CACHE STRING "Current platform being built (set from MSBuild)")
 set(BUILD_RID "${BUILD_RID}" CACHE STRING "Current RID being built, do not rely on this for any important logic! Does not support multi-arch builds (set from MSBuild)")
