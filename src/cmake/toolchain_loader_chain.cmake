@@ -8,34 +8,41 @@ cmake_minimum_required(VERSION 3.25)
 # Chain-load more than two toolchain files
 # Useful when you have vcpkg and a toolchain file, but need to override a toolchain variable
 function(chain toolchain_file)
-  if("$ENV{CMAKE_TOOLCHAIN_FILE_0}" STREQUAL "${toolchain_file}"
-    OR "$ENV{CMAKE_TOOLCHAIN_FILE_1}" STREQUAL "${toolchain_file}"
-    OR "$ENV{CMAKE_TOOLCHAIN_FILE_2}" STREQUAL "${toolchain_file}"
-    OR "$ENV{CMAKE_TOOLCHAIN_FILE_3}" STREQUAL "${toolchain_file}"
-    OR "$ENV{CMAKE_TOOLCHAIN_FILE_4}" STREQUAL "${toolchain_file}")
+  set(CMAKE_TOOLCHAIN_FILE_LIST "$ENV{CMAKE_TOOLCHAIN_FILE_LIST}")
+  list(LENGTH CMAKE_TOOLCHAIN_FILE_LIST CMAKE_TOOLCHAIN_FILE_LIST_LENGTH)
+  string(TOLOWER "${toolchain_file}" lowercase_toolchain_file)
+  string(TOLOWER "${CMAKE_TOOLCHAIN_FILE_LIST}" lowercase_CMAKE_TOOLCHAIN_FILE_LIST)
+  string(FIND "${lowercase_CMAKE_TOOLCHAIN_FILE_LIST}" "${lowercase_toolchain_file}" substringMatch)
+
+  if("${lowercase_toolchain_file}" IN_LIST lowercase_CMAKE_TOOLCHAIN_FILE_LIST)
+    set(isAlreadyChained true)
+  else()
+    set(isAlreadyChained false)
+  endif()
+
+  message(VERBOSE "  | BEFORE
+  toolchain_file: ${toolchain_file}
+  isAlreadyChained: ${isAlreadyChained}
+  CMAKE_TOOLCHAIN_FILE_LIST_LENGTH: ${CMAKE_TOOLCHAIN_FILE_LIST_LENGTH}
+  CMAKE_TOOLCHAIN_FILE_LIST: ${CMAKE_TOOLCHAIN_FILE_LIST}")
+
+  if(isAlreadyChained)
     return() # noop; toolchain already chained
   endif()
 
-  # todo: investigate if PARENT_SCOPE parameter allows for non-ENV vars to propagate
-  if("$ENV{CMAKE_TOOLCHAIN_FILE_0}" STREQUAL "")
-    set(ENV{CMAKE_TOOLCHAIN_FILE_0} "${toolchain_file}")
-  elseif("$ENV{CMAKE_TOOLCHAIN_FILE_1}" STREQUAL "")
-    set(ENV{CMAKE_TOOLCHAIN_FILE_1} "${toolchain_file}")
-  elseif("$ENV{CMAKE_TOOLCHAIN_FILE_2}" STREQUAL "")
-    set(ENV{CMAKE_TOOLCHAIN_FILE_2} "${toolchain_file}")
-  elseif("$ENV{CMAKE_TOOLCHAIN_FILE_3}" STREQUAL "")
-    set(ENV{CMAKE_TOOLCHAIN_FILE_3} "${toolchain_file}")
-  elseif("$ENV{CMAKE_TOOLCHAIN_FILE_4}" STREQUAL "")
-    set(ENV{CMAKE_TOOLCHAIN_FILE_4} "${toolchain_file}")
+  if(CMAKE_TOOLCHAIN_FILE_LIST_LENGTH EQUAL 0)
+    set(CMAKE_TOOLCHAIN_FILE_LIST "${toolchain_file}")
   else()
-    message(FATAL_ERROR is this overkill?)
+    list(APPEND CMAKE_TOOLCHAIN_FILE_LIST "${toolchain_file}")
   endif()
 
-  message(VERBOSE
-    "  toolchain_file: ${toolchain_file}
-  ENV{CMAKE_TOOLCHAIN_FILE_0}: $ENV{CMAKE_TOOLCHAIN_FILE_0}
-  ENV{CMAKE_TOOLCHAIN_FILE_1}: $ENV{CMAKE_TOOLCHAIN_FILE_1}
-  ENV{CMAKE_TOOLCHAIN_FILE_2}: $ENV{CMAKE_TOOLCHAIN_FILE_2}
-  ENV{CMAKE_TOOLCHAIN_FILE_3}: $ENV{CMAKE_TOOLCHAIN_FILE_3}
-  ENV{CMAKE_TOOLCHAIN_FILE_4}: $ENV{CMAKE_TOOLCHAIN_FILE_4}")
+  # assign CMAKE_TOOLCHAIN_FILE_LIST to ENV-scope
+  set(ENV{CMAKE_TOOLCHAIN_FILE_LIST} "${CMAKE_TOOLCHAIN_FILE_LIST}")
+
+  list(LENGTH CMAKE_TOOLCHAIN_FILE_LIST CMAKE_TOOLCHAIN_FILE_LIST_LENGTH)
+
+  message(VERBOSE "  | AFTER
+  toolchain_file: ${toolchain_file}
+  CMAKE_TOOLCHAIN_FILE_LIST_LENGTH: ${CMAKE_TOOLCHAIN_FILE_LIST_LENGTH}
+  ENV{CMAKE_TOOLCHAIN_FILE_LIST}: $ENV{CMAKE_TOOLCHAIN_FILE_LIST}")
 endfunction()
