@@ -43,5 +43,5 @@ if(USE_MSVC_WINE)
 
   # set(VCPKG_TARGET_TRIPLET x86-windows-static-md) # is set in toolchain.cake
 else()
-  message(Verbose "Not using MSVC-Wine")
+  message(NOTICE "Not using MSVC-Wine")
 endif()
