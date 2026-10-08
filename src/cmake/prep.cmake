@@ -80,7 +80,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
     chain(${CMAKE_SOURCE_DIR}/cmake/toolchains/msvc-wine-x86-nt6.1.cmake)
   endif()
 
-  set(CACHE{VCPKG_PLATFORM_TOOLSET} TYPE STRING VALUE v141)
+  set(CACHE{VCPKG_PLATFORM_TOOLSET} TYPE STRING VALUE v140)
 
   # https://learn.microsoft.com/en-us/cpp/build/reference/md-mt-ld-use-run-time-library?view=msvc-170
   # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD") # handled by target triplet...maybe
