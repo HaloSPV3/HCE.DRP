@@ -63,7 +63,7 @@ string(TOLOWER "${CMAKE_TOOLCHAIN_FILE}" cmake_toolchain_file)
 # CMAKE_TOOLCHAIN_FILE_0. Then, assign vcpkg as the main toolchain.
 if(NOT "${cmake_toolchain_file}" MATCHES "[\\/]vcpkg.cmake")
   # if USE_MSVC_WINE, do not chainload MingW32.cmake
-  if(NOT (USE_MSVC_WINE AND "${cmake_toolchain_file}" MATCHES "[\\/]MingW32.cmake"))
+  if(NOT (USE_MSVC_WINE AND "${cmake_toolchain_file}" MATCHES "[\\/]mingw32.cmake"))
     message(WARNING "USE_MSVC_WINE: ${USE_MSVC_WINE}")
     chain("${CMAKE_TOOLCHAIN_FILE}")
   endif()
