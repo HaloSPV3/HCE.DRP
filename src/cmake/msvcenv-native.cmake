@@ -56,7 +56,6 @@ else()
     execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$LIB\\\"\" | sed s/z://g | sed 's/\\/\//g'")
     set(ENV{LIB} "${stdout}")
 
-    
     if(NOT DEFINED VCPKG_TARGET_TRIPLET)
       execute_process(COMMAND "bash -c \" . ${ENV_SH} && /usr/bin/env echo \\\"\$ARCH\\\"\"" OUTPUT_VARIABLE stdout)
       set(MSVCARCH "${stdout}")
