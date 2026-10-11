@@ -49,11 +49,11 @@ else()
     set(stdout)
 
     # INCLUDE="$(bash -c ". $ENV_SH && /usr/bin/env echo \"\$INCLUDE\"" | sed s/z://g | sed 's/\\/\//g')"
-    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"\$INCLUDE\\\"\" | sed s/z://g | sed 's/\\/\//g'")
+    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$INCLUDE\\\"\" | sed s/z://g | sed 's/\\/\//g'")
     set(ENV{INCLUDE} "${stdout}")
 
     # LIB="$(bash -c ". $ENV_SH && /usr/bin/env echo \"\$LIB\"" | sed s/z://g | sed 's/\\/\//g')"
-    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"\$LIB\\\"\" | sed s/z://g | sed 's/\\/\//g'")
+    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$LIB\\\"\" | sed s/z://g | sed 's/\\/\//g'")
     set(ENV{LIB} "${stdout}")
 
     
