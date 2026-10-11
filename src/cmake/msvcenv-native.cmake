@@ -49,12 +49,21 @@ else()
     set(stdout)
 
     # INCLUDE="$(bash -c ". $ENV_SH && /usr/bin/env echo \"\$INCLUDE\"" | sed s/z://g | sed 's/\\/\//g')"
-    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$INCLUDE\\\"\" | sed s/z://g | sed 's/\\/\//g'")
+    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$INCLUDE\\\"\" | sed s/z://g | sed 's/\\/\//g'" OUTPUT_VARIABLE stdout ERROR_VARIABLE stdout)
     set(ENV{INCLUDE} "${stdout}")
+    if("$ENV{INCLUDE}" STREQUAL "")
+      set(ENV{INCLUDE} "${stdout}")
+    else()
+      set(ENV{INCLUDE} "${stdout}${_SEP}$ENV{INCLUDE}")
+    endif()
 
     # LIB="$(bash -c ". $ENV_SH && /usr/bin/env echo \"\$LIB\"" | sed s/z://g | sed 's/\\/\//g')"
-    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$LIB\\\"\" | sed s/z://g | sed 's/\\/\//g'")
-    set(ENV{LIB} "${stdout}")
+    execute_process(COMMAND "bash -c \". ${ENV_SH} && /usr/bin/env echo \\\"$LIB\\\"\" | sed s/z://g | sed 's/\\/\//g'" OUTPUT_VARIABLE stdout ERROR_VARIABLE stdout)
+    if("$ENV{LIB}" STREQUAL "")
+      set(ENV{LIB} "${stdout}")
+    else()
+      set(ENV{LIB} "${stdout}${_SEP}$ENV{LIB}")
+    endif()
 
     if(NOT DEFINED VCPKG_TARGET_TRIPLET)
       execute_process(COMMAND "bash -c \" . ${ENV_SH} && /usr/bin/env echo \\\"\$ARCH\\\"\"" OUTPUT_VARIABLE stdout)
