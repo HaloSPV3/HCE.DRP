@@ -34,7 +34,7 @@ if [ -z "$BIN" ]; then
       echo "Unable to locate \$MSVC_ROOT directory e.g. /opt/msvc, ~/my_msvc, C:\\msvc"
     fi
   fi
-  BIN="$MSVC_ROOT/bin"
+  BIN="$MSVC_ROOT/bin/x86"
   echo "\$BIN is undefined. Assuming \"$BIN\"."
 fi
 
