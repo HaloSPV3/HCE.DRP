@@ -12,8 +12,6 @@ import '@semantic-release/release-notes-generator';
 import { exit } from 'node:process';
 import 'semantic-release-export-data';
 
-
-
 // https://github.com/semantic-release/github/blob/master/README.md#Options:~:text=releaseBodyTemplate
 // halocepresence 1.0.6-alpha.169 (native).zip'
 const githubReleaseAssetHint = /* md */ `\
