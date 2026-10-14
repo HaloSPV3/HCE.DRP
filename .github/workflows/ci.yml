@@ -35,11 +35,11 @@ jobs:
           fetch-depth: 0
 
       - run: corepack enable
-      - name: Setup Node Cache
+      - name: Setup Node
         uses: actions/setup-node@v7
         with:
+          # cache: yarn
           node-version-file: .nvmrc
-          cache: yarn
       - run: corepack enable
 
       - run: yarn install --immutable
