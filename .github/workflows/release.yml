@@ -44,6 +44,13 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v3
 
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v6
+        with:
+          cache: true
+          cache-dependency-path: |
+            src/packages.lock.json
+            src/packages-debug.lock.json
       ################
       # BUILD
       ################
