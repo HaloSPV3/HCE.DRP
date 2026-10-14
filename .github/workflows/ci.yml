@@ -37,5 +37,8 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v3
 
-      - name: Build
-        run: msbuild src /p:Configuration=${{ matrix.buildConfig }}
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+
+      - name: Build | .NET MSBuildCMake.SDK -> CMake -> Ninja -> MSVC (Windows) or MinGW-GCC (Linux, Mac)
+        run: dotnet publish src --configuration ${{ matrix.buildConfig }} -v diag
