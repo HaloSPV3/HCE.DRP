@@ -59,4 +59,4 @@ jobs:
         uses: ammaraskar/msvc-problem-matcher@47189a176388253d16c6f0b79eee6274512b761a
 
       - name: Build | .NET MSBuildCMake.SDK -> CMake -> Ninja -> MSVC (Windows) or MinGW-GCC (Linux, Mac)
-        run: dotnet publish src --configuration ${{ matrix.buildConfig }} -v diag
+        run: dotnet publish src --configuration ${{ matrix.buildConfig }}
