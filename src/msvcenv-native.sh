@@ -31,11 +31,11 @@ if [ -z "$BIN" ]; then
     if [ -d /opt/msvc ]; then
       MSVC_ROOT=/opt/msvc
     else
-      echo "Unable to locate \$MSVC_ROOT directory e.g. /opt/msvc, ~/my_msvc, C:\\msvc"
+      >&2 echo "Unable to locate \$MSVC_ROOT directory e.g. /opt/msvc, ~/my_msvc, C:\\msvc"
     fi
   fi
   BIN="$MSVC_ROOT/bin/x86"
-  echo "\$BIN is undefined. Assuming \"$BIN\"."
+  >&2 echo "\$BIN is undefined. Assuming \"$BIN\"."
 fi
 
 if [ -z "$BIN" ]; then
