@@ -5,7 +5,7 @@ if(NOT IS_DIRECTORY "${MSVC_ROOT}")
   set(MSVC_ROOT "$ENV{MSVC_ROOT}")
 endif()
 
-include("${MSVC_ROOT}/cmake/toolchain-x86.cmake")
+include("${MSVC_ROOT}/cmake/ide/toolchain-x86.cmake")
 
 set(CMAKE_SYSTEM_VERSION 6.1)
 set(CMAKE_AR ${MSVC_ROOT}/bin/x86/lib)
