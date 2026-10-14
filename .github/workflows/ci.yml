@@ -34,6 +34,16 @@ jobs:
           submodules: "recursive"
           fetch-depth: 0
 
+      - run: corepack enable
+      - name: Setup Node Cache
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+      - run: corepack enable
+
+      - run: yarn install --immutable
+
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v3
 
