@@ -54,28 +54,12 @@ jobs:
 
       - name: MSVC Problem Matcher
         uses: ammaraskar/msvc-problem-matcher@47189a176388253d16c6f0b79eee6274512b761a
-      ################
-      # BUILD
-      ################
-      - name: build solution
-        run: |
-          msbuild src /p:Configuration="Release"
 
-      # required variables: GitVersion_FullSemVer
-      - name: Compress-PublishArtifacts
-        run: |
-          $publishPath = Resolve-Path "./publish/";
-          $archiveName = "$env:ASSEMBLYNAME.$env:GitVersion_FullSemVer.zip";
-          Set-Location $publishPath;
-          Compress-Archive -Path $publishPath -DestinationPath $archiveName -CompressionLevel Optimal;
-
-      ################
-      # RELEASE
-      ################
-      # https://github.com/marketplace/actions/action-for-semantic-release
-      - name: Setup Semantic Release
-        run: yarn release
+      - name: Semantic Release
+        id: semantic-release
+        run: yarn run release
         env:
+          DEBUG: semantic-release*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Artifact
