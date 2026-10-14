@@ -47,9 +47,22 @@ else
     return 1
   else
     INCLUDE="$(bash -c ". $ENV && /usr/bin/env echo \"\$INCLUDE\"" | sed s/z://g | sed 's/\\/\//g')"
-    LIB="$(bash -c ". $ENV && /usr/bin/env echo \"\$LIB\"" | sed s/z://g | sed 's/\\/\//g')"
     export INCLUDE
+
+    LIB="$(bash -c ". $ENV && /usr/bin/env echo \"\$LIB\"" | sed s/z://g | sed 's/\\/\//g')"
     export LIB
+
+    LIBPATH=$LIB
+    export LIBPATH
+
+    # should be Windows paths; WINEPATH is prepended as-is to the Wine instance's PATH
+    # shellcheck disable=SC2016
+    WINEPATH="$(bash -c ". $ENV && /usr/bin/env echo \"\$WINEPATH\"" | sed 's/(^|;)(\\||\/)/$1z:$2/g' | sed 's/\//\\/g')"
+    export WINEPATH
+
+    WINEDLLOVERRIDES="$(bash -c ". $ENV && /usr/bin/env echo \"\$WINEDLLOVERRIDES\"" | sed s/z://g | sed 's/\\/\//g')"
+    export WINEDLLOVERRIDES
+
     MSVCARCH="$(bash -c ". $ENV && /usr/bin/env echo \"\$ARCH\"")"
     case $MSVCARCH in
     x86) TARGET_ARCH=i686 ;;

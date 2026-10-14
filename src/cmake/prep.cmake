@@ -41,8 +41,50 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
       message(FATAL_ERROR "MSVC_ROOT (e.g. /opt/msvc) not found!")
     endif() #
 
-    set(BIN ${MSVC_ROOT}/bin/x86)
-    include(${CMAKE_SOURCE_DIR}/cmake/msvcenv-native.cmake)
+    set(BIN "${MSVC_ROOT}/bin/x86")
+    execute_process(OUTPUT_VARIABLE env_output ERROR_VARIABLE env_error
+      COMMAND env "BIN=${BIN}" bash -c ". \"${CMAKE_SOURCE_DIR}/msvcenv-native.sh\" && echo \"TARGET_TRIPLE=\$TARGET_TRIPLE\nLIBPATH=\$LIBPATH\nWINEPATH=\$WINEPATH\nWINEDLLOVERRIDES=\$WINEDLLOVERRIDES\nINCLUDE=\$INCLUDE\nLIB=\$LIB\"")
+
+    function(propagate_env_variable_from_env_output ENV_VARIABLE_NAME)
+      # I keep forgetting the syntax and both of my CMake vscode extensions suck for solving that problem compared to C#, TypeScript, et cetera language servers/linters
+      # string(REGEX REPLACE <regular_expression> <replacement_expression> <output_variable> <input> [<input>...])
+
+      # CMake RegEx engine is ancient and frozen; no lookbehind, lookahead, nor non-capturing groups; It also lacks escape codes such  as \s, \w, and many more features I would expect from a RegEx engine.
+      # So, capture with the prefix
+      string(REGEX MATCH "${ENV_VARIABLE_NAME}=[^\n]+" _${ENV_VARIABLE_NAME} "${env_output}")
+      # then remove the prefix
+      string(REGEX REPLACE "${ENV_VARIABLE_NAME}=" "" _${ENV_VARIABLE_NAME} "${_${ENV_VARIABLE_NAME}}")
+
+      # WINEPATH paths may be missing their drive-letter roots. So, we'll fix them, here.
+      if("${ENV_VARIABLE_NAME}" STREQUAL "WINEPATH")
+        # string(REGEX REPLACE <regular_expression> <replacement_expression> <output_variable> <input> [<input>...])
+        string(REGEX REPLACE "^(\\\\)" "z:\\1" _${ENV_VARIABLE_NAME} "${_${ENV_VARIABLE_NAME}}")
+        string(REGEX REPLACE ";(\\\\)" ";z:\\1" _${ENV_VARIABLE_NAME} "${_${ENV_VARIABLE_NAME}}")
+        # message(WARNING "_${ENV_VARIABLE_NAME}: ${_${ENV_VARIABLE_NAME}}")
+      endif()
+
+      if("${_${ENV_VARIABLE_NAME}}" STREQUAL "")
+        message(FATAL_ERROR "_${ENV_VARIABLE_NAME}: ${_${ENV_VARIABLE_NAME}}")
+      endif()
+
+      if("$ENV{${ENV_VARIABLE_NAME}}" STREQUAL "")
+        set(ENV{${ENV_VARIABLE_NAME}} "${_${ENV_VARIABLE_NAME}}")
+      else()
+        list(APPEND $ENV{${ENV_VARIABLE_NAME}} "${_${ENV_VARIABLE_NAME}}")
+      endif()
+
+      message(WARNING "ENV{${ENV_VARIABLE_NAME}}: $ENV{${ENV_VARIABLE_NAME}}")
+    endfunction()
+
+    propagate_env_variable_from_env_output("TARGET_TRIPLE")
+    propagate_env_variable_from_env_output("LIBPATH")
+    propagate_env_variable_from_env_output("WINEPATH")
+    propagate_env_variable_from_env_output("WINEDLLOVERRIDES")
+    propagate_env_variable_from_env_output("INCLUDE")
+    propagate_env_variable_from_env_output("LIB")
+
+    # when an app manifest is included in the compilation context, link.exe will try to invoke mt.exe and may fail to find it.
+    # WINEPATH should already include the mt.exe's directory, so it _should_ work, but doesn't.
 
     # allow vcpkg to override windows triplets e.g.
     # /opt/msvc/cmake/vcpkg_triplets/x86-windows.cmake
