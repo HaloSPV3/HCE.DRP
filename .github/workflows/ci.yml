@@ -16,8 +16,8 @@ on:
       - ready_for_review
 
 jobs:
-  build:
-    name: Build
+  ci:
+    name: CI
     runs-on: windows-latest
 
     permissions:
