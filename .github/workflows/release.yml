@@ -51,6 +51,9 @@ jobs:
           cache-dependency-path: |
             src/packages.lock.json
             src/packages-debug.lock.json
+
+      - name: MSVC Problem Matcher
+        uses: ammaraskar/msvc-problem-matcher@47189a176388253d16c6f0b79eee6274512b761a
       ################
       # BUILD
       ################
