@@ -21,7 +21,7 @@
     "publish": "echo 'todo:publish'",
     "release": "semantic-release --debug",
     "restore": "dotnet msbuild -t:restore src",
-    "sdks": "yarn dlx @yarnpkg/sdks",
+    "sdks": "yarn dlx @yarnpkg/sdks@2",
     "test": "echo 'todo:test'"
   },
   "directories": {
