@@ -64,15 +64,17 @@
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
-    "semantic-release": "^25.0.9",
+    "semantic-release": "^26.0.0-beta.5",
     "semantic-release-export-data": "^1.2.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0"
   },
   "packageManager": "yarn@4.18.0+sha512.fcb8716fe7cd0eece141ffc18b92193a9df9204c1ba83189c288835223fc0bbe64af473bab0d5e9927a7daeb5caf2bb07eb2787cc9338ca040ea125f2a1f2f7e",
   "resolutions": {
-    "import-from-esm@npm:^2.0.0": "patch:import-from-esm@npm%3A2.0.0#~/.yarn/patches/import-from-esm-npm-2.0.0-8866147795.patch",
-    "@yarnpkg/core@npm:^4.9.1": "npm:4.9.1"
+    "@semantic-release/release-notes-generator@npm:^14.1.0": "npm:15.0.0-beta.3",
+    "@semantic-release/release-notes-generator@npm:^14.1.1": "npm:15.0.0-beta.3",
+    "@yarnpkg/core@npm:^4.9.1": "npm:4.9.1",
+    "import-from-esm@npm:^2.0.0": "patch:import-from-esm@npm%3A2.0.0#~/.yarn/patches/import-from-esm-npm-2.0.0-8866147795.patch"
   },
   "allowScripts": {
     "@halospv3/hce.shared-config": false
