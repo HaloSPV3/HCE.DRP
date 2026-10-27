@@ -21,7 +21,6 @@
     "publish": "echo 'todo:publish'",
     "release": "semantic-release --debug",
     "restore": "dotnet msbuild -t:restore src",
-    "sdks": "yarn dlx @yarnpkg/sdks@2",
     "test": "echo 'todo:test'"
   },
   "directories": {
@@ -57,6 +56,7 @@
     "@semantic-release/release-notes-generator": "^14.1.1",
     "@types/debug": "^4.1.13",
     "@types/node": "^24.19.2",
+    "@yarnpkg/sdks": "^3.3.1",
     "commitlint": "^21.2.4",
     "conventional-changelog-conventionalcommits": "^10.4.1",
     "eslint": "^10.13.0",
@@ -71,7 +71,8 @@
   },
   "packageManager": "yarn@4.18.0+sha512.fcb8716fe7cd0eece141ffc18b92193a9df9204c1ba83189c288835223fc0bbe64af473bab0d5e9927a7daeb5caf2bb07eb2787cc9338ca040ea125f2a1f2f7e",
   "resolutions": {
-    "import-from-esm@npm:^2.0.0": "patch:import-from-esm@npm%3A2.0.0#~/.yarn/patches/import-from-esm-npm-2.0.0-8866147795.patch"
+    "import-from-esm@npm:^2.0.0": "patch:import-from-esm@npm%3A2.0.0#~/.yarn/patches/import-from-esm-npm-2.0.0-8866147795.patch",
+    "@yarnpkg/core@npm:^4.9.1": "npm:4.9.1"
   },
   "allowScripts": {
     "@halospv3/hce.shared-config": false
