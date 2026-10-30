@@ -21,6 +21,7 @@
     "redhat.vscode-xml",
     "k--kato.docomment",
     "arcanis.vscode-zipfs",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "jgclark.vscode-todo-highlight"
   ]
 }
