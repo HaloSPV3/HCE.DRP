@@ -4,6 +4,7 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <NoLogo>true</NoLogo>
     <PublishRelease>true</PublishRelease>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
 
     <RepoRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/index'))</RepoRoot>
     <_HCESharedDirSuffix>node_modules/@halospv3/hce.shared-config/</_HCESharedDirSuffix>
