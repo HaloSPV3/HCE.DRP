@@ -20,7 +20,7 @@
     <!-- <VersionPrefix Condition="'$(VersionPrefix)' == ''">1.0.0</VersionPrefix> -->
 
     <!-- The directory where CMakeLists.txt is located. Mandatory property. -->
-    <CMakeListsDir>$(MSBuildThisFileDirectory)</CMakeListsDir>
+    <CMakeListsDir>$([System.Text.RegularExpressions.Regex]::Replace("$(MSBuildThisFileDirectory)", "\\$", ""))</CMakeListsDir>
 
     <!-- Which arches to build for for a single RID, remove or delete if you want to build according to RID -->
     <!-- <CMakeBuildAllArches>x86;x64;arm64</CMakeBuildAllArches> -->
