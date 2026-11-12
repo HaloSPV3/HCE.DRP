@@ -159,7 +159,7 @@ string(TOLOWER "${CMAKE_TOOLCHAIN_FILE}" cmake_toolchain_file)
 if(NOT "${cmake_toolchain_file}" MATCHES "[\\/]vcpkg.cmake")
   # if USE_MSVC_WINE, do not chainload MingW32.cmake
   if(NOT (USE_MSVC_WINE AND "${cmake_toolchain_file}" MATCHES "[\\/]mingw32.cmake"))
-    message(WARNING "  | BEFORE chain(\"${CMAKE_TOOLCHAIN_FILE}\")
+    message(VERBOSE "  | BEFORE chain(\"${CMAKE_TOOLCHAIN_FILE}\")
   USE_MSVC_WINE: ${USE_MSVC_WINE}
   CMAKE_TOOLCHAIN_FILE: ${CMAKE_TOOLCHAIN_FILE}
   cmake_toolchain_file: ${cmake_toolchain_file}")
