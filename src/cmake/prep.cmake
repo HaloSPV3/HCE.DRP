@@ -117,7 +117,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
   endif()
 
   if(NOT "${VCPKG_TARGET_TRIPLET}" STREQUAL "x86-windows-static-md")
-    message(FATAL_ERROR "MSVC must used with triplet x86-windows-static-md")
+    message(FATAL_ERROR "MSVC must used with triplet x86-windows-static-md instead of \"${VCPKG_TARGET_TRIPLET}\"!")
   endif()
 
   chain("${VCPKG_ROOT}/scripts/toolchains/windows.cmake")
