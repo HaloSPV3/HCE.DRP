@@ -85,6 +85,7 @@
       "displayName": "Base Config",
       "binaryDir": "${sourceParentDir}/artifacts/obj/DRP/release_win-x86/win-x86/x86",
       "cacheVariables": {
+        "USE_MSVC_WINE": false,
         "NATIVE_OUTPUT_FOLDER": "${sourceParentDir}/artifacts/bin/DRP/release_win-x86/win-x86/native",
         "VCPKG_TARGET_TRIPLET": "x86-mingw-static-release"
       },
