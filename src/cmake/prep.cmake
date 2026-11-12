@@ -73,7 +73,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
         list(APPEND $ENV{${ENV_VARIABLE_NAME}} "${_${ENV_VARIABLE_NAME}}")
       endif()
 
-      message(WARNING "ENV{${ENV_VARIABLE_NAME}}: $ENV{${ENV_VARIABLE_NAME}}")
+      message(VERBOSE "ENV{${ENV_VARIABLE_NAME}}: $ENV{${ENV_VARIABLE_NAME}}")
     endfunction()
 
     propagate_env_variable_from_env_output("TARGET_TRIPLE")
