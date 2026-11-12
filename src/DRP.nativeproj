@@ -29,7 +29,7 @@
     <!-- If you want to force a build config, use the below property and uncomment it. By default Debug is used for debug, and MinSizeRel is used for release. -->
     <!-- <CMakeBuildConfig>MinSizeRel</CMakeBuildConfig> -->
 
-    <USE_MSVC_WINE Condition="'$(USE_MSVC_WINE)' == ''">false</USE_MSVC_WINE>
+    <USE_MSVC_WINE Condition="'$(USE_MSVC_WINE)' == ''">true</USE_MSVC_WINE>
     <USE_MSVC_WINE Condition="'$(USE_MSVC_WINE)' == 'true'">true</USE_MSVC_WINE>
     <CMakeExtraFlags Condition="$([MSBuild]::IsOSPlatform('Windows'))">--preset windows-base</CMakeExtraFlags>
     <CMakeExtraFlags Condition="$([MSBuild]::IsOSPlatform('OSX'))">--preset macos-base</CMakeExtraFlags>
