@@ -20,7 +20,15 @@ if(NOT IS_DIRECTORY ${VCPKG_ROOT})
   message(FATAL_ERROR "VCPKG_ROOT cannot be found!")
 endif()
 
+if(NOT DEFINED CACHE{VCPKG_TARGET_TRIPLET})
+endif()
+
 set(USE_MSVC_WINE ${USE_MSVC_WINE})
+
+if(NOT DEFINED CACHE{USE_MSVC_WINE})
+  set(CACHE{USE_MSVC_WINE} TYPE BOOL VALUE "${USE_MSVC_WINE}")
+endif()
+
 if("${USE_MSVC_WINE}" STREQUAL "" AND NOT "$ENV{USE_MSVC_WINE}" STREQUAL "")
   set(CACHE{USE_MSVC_WINE} TYPE BOOL VALUE "$ENV{USE_MSVC_WINE}")
 endif()
@@ -111,7 +119,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
 
     set(CACHE{VCPKG_OVERLAY_TRIPLETS} TYPE FILEPATH VALUE "${cmake_triplets_msvc_wine}")
 
-    set(CACHE{VCPKG_TARGET_TRIPLET} VALUE x86-windows-static-md)
+    set(CACHE{VCPKG_TARGET_TRIPLET} TYPE STRING VALUE x86-windows-static-md)
   else()
     message(STATUS "Building win-x86 (x86) natives with MSVC")
   endif()
@@ -132,7 +140,7 @@ if(CMAKE_HOST_WIN32 OR USE_MSVC_WINE)
 else()
   # https://github.com/microsoft/vcpkg/blob/master/triplets/community/x86-mingw-static-release.cmake
   # vcpkg/triplets/community/x86-mingw-static-release.cmake
-  set(VCPKG_TARGET_TRIPLET x86-mingw-static-release) # '-dynamic' would make a separate "libdiscord-rpc.dll"
+  set(CACHE{VCPKG_TARGET_TRIPLET} TYPE STRING VALUE x86-mingw-static-release) # '-dynamic' would make a separate "libdiscord-rpc.dll"
 
   # CMAKE_C_COMPILER, CMAKE_CXX_COMPILER, and CMAKE_RC_COMPILER are set by the triplet
   # CMAKE_C_FLAGS_INIT, CMAKE_CXX_FLAGS_INIT, and CMAKE_EXE_LINKER_FLAGS_INIT are set in ./toolchain_loader.cmake
