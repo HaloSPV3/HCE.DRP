@@ -47,6 +47,11 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v3
 
+      - uses: lukka/get-cmake@v4.4.5
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+
       - name: Setup Dotnet
         uses: actions/setup-dotnet@v6
         with:
