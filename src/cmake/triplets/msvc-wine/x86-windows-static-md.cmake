@@ -2,8 +2,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 cmake_minimum_required(VERSION 3.10)
 
-if(NOT VCPKG_ROOT)
-  set(VCPKG_ROOT $ENV{VCPKG_ROOT})
+if(NOT CACHE{VCPKG_ROOT})
+  set(CACHE{VCPKG_ROOT} VALUE $ENV{VCPKG_ROOT})
+endif()
+if(NOT CACHE{VCPKG_ROOT})
+  set(CACHE{VCPKG_ROOT} VALUE $ENV{VCPKG_INSTALLATION_ROOT})
 endif()
 # TODO: chain call does not work; use list, CACHE variable, or ENV variables
 # chain("${VCPKG_ROOT}/scripts/toolchains/windows.cmake") # chained in prep.cmake, instead

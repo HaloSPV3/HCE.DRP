@@ -3,6 +3,10 @@
 HCE_DRP_BUILD() {
 
   verify_prerequisites() {
+    if ! [ -d "$VCPKG_ROOT" ] && [ -d "$VCPKG_INSTALLATION_ROOT" ]; then
+      set -gx VCPKG_ROOT "$VCPKG_INSTALLATION_ROOT"
+    fi
+
     if ! [ -d "$VCPKG_ROOT" ]; then
       echo "Environment variable VCPKG_ROOT is unset! See https://learn.microsoft.com/en-us/vcpkg/users/config-environment#vcpkg_root"
       echo 1
