@@ -97,6 +97,8 @@
       "binaryDir": "${sourceParentDir}/artifacts/obj/DRP/debug_win-x86/win-x86/x86",
       "cacheVariables": { "NATIVE_OUTPUT_FOLDER": "${sourceParentDir}/artifacts/bin/DRP/debug_win-x86/win-x86/native" }
     },
+    { "name": "-ide", "hidden": true,
+      "cacheVariables": { "IDE_BUILD": "true" } },
     {
       "name": "windows-base",
       "description": "Sets x86 arch, compilers, build type",
@@ -116,6 +118,7 @@
       }
     },
     { "name": "windows-debug", "inherits": [ "-debug", "windows-base" ] },
+    { "name": "windows-ide", "inherits": [ "windows-base", "-ide" ] },
     {
       "name": "macos-base",
       "description": "Sets compilers, build type",
@@ -127,6 +130,7 @@
       }
     },
     { "name": "macos-debug", "inherits": [ "-debug", "macos-base" ] },
+    { "name": "macos-ide", "inherits": [ "macos-base", "-ide" ] },
     {
       "name": "linux-base",
       "description": "Sets compilers, build type",
@@ -138,6 +142,7 @@
       }
     },
     { "name": "linux-debug", "inherits": [ "-debug", "linux-base" ] },
+    { "name": "linux-ide", "inherits": [ "linux-base", "-ide" ] },
     {
       "name": "linux-warnings",
       "description": "Enables dev warnings (-wdev)",
@@ -159,7 +164,8 @@
         }
       }
     },
-    { "name": "msvc-wine-debug", "inherits": [ "msvc-wine", "-debug" ] }
+    { "name": "msvc-wine-debug", "inherits": [ "msvc-wine", "-debug" ] },
+    { "name": "msvc-wine-ide", "inherits": [ "msvc-wine", "-ide" ] }
   ],
   "packagePresets": [ { "name": "default", "configurePreset": "core-configure" } ],
   "testPresets": [
